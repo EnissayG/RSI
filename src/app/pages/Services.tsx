@@ -1,268 +1,258 @@
-import { motion } from 'motion/react';
-import { Home, Utensils, Stethoscope, HeartHandshake, Users, Clock, CheckCircle, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { PageTransition } from '../components/PageTransition';
-import { WaveDivider } from '../components/WaveDivider';
+import {
+  PageHero,
+  SectionEyebrow,
+  SectionRule,
+  ColorBand,
+  HoverCard,
+  ContentImage,
+  fontHeading,
+  fontBody,
+} from '../components/layout/PageSections';
+import { siteImages, pageHeroImages } from '../config/images';
+import { ORGANIZATION } from '../config/organization';
+
+function ServiceList({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-3 mt-6">
+      {items.map((item) => (
+        <li key={item} className="flex items-start gap-3">
+          <CheckCircle className="w-5 h-5 text-[#8AAC2A] flex-shrink-0 mt-0.5" />
+          <span className="text-[#6B6B6B]" style={fontBody}>
+            {item}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function TwoColumnSection({
+  eyebrow,
+  title,
+  body,
+  items,
+  image,
+  imageAlt,
+  imageLeft,
+  bg,
+}: {
+  eyebrow: string;
+  title: string;
+  body: string;
+  items: string[];
+  image: string;
+  imageAlt: string;
+  imageLeft: boolean;
+  bg: string;
+}) {
+  const textCol = (
+    <div>
+      <SectionEyebrow>{eyebrow}</SectionEyebrow>
+      <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+        {title}
+      </h2>
+      <p className="text-[#6B6B6B]" style={fontBody}>
+        {body}
+      </p>
+      <ServiceList items={items} />
+    </div>
+  );
+  const imgCol = (
+    <div className="rounded-2xl overflow-hidden shadow-xl h-[380px]">
+      <img src={image} alt={imageAlt} className="w-full h-full object-cover" />
+    </div>
+  );
+
+  return (
+    <section className={`py-24 ${bg}`}>
+      <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        {imageLeft ? (
+          <>
+            {imgCol}
+            {textCol}
+          </>
+        ) : (
+          <>
+            {textCol}
+            {imgCol}
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
 
 export function Services() {
-  const mainServices = [
-    {
-      icon: Home,
-      color: '#E8621A',
-      title: 'Logements adaptés',
-      description:
-        "15 appartements 3½ entièrement adaptés avec salon, cuisinette, chambre fermée et salle de bain accessible.",
-      features: [
-        'Équipements adaptés selon les besoins',
-        'Cuisine et salle de bain accessibles',
-        'Espace de vie privé et sécurisé',
-        'Loyer abordable et subventionné',
-      ],
-    },
-    {
-      icon: Stethoscope,
-      color: '#D4A017',
-      title: 'Activités de la vie quotidienne (AVQ)',
-      description: "Assistance professionnelle pour les activités essentielles, disponible 24/7.",
-      features: [
-        "Aide à l'hygiène personnelle",
-        "Assistance pour l'habillage",
-        "Soutien pour les déplacements",
-        "Aide à la prise de médicaments",
-      ],
-    },
-    {
-      icon: Utensils,
-      color: '#8AAC2A',
-      title: 'Activités de la vie domestique (AVD)',
-      description: "Services de soutien pour maintenir un environnement de vie sain et agréable.",
-      features: [
-        'Préparation et service des repas',
-        'Entretien ménager',
-        'Gestion du linge',
-        'Accompagnement pour les courses',
-      ],
-    },
-  ];
-
-  const additionalServices = [
-    {
-      icon: Users,
-      title: "Activités sociales et communautaires",
-      description: "Programme varié pour favoriser l'intégration sociale et le développement personnel.",
-    },
-    {
-      icon: HeartHandshake,
-      title: "Soutien à l'intégration",
-      description: "Accompagnement personnalisé pour faciliter l'adaptation et l'épanouissement.",
-    },
-    {
-      icon: Clock,
-      title: "Disponibilité 24/7",
-      description: "Personnel présent en tout temps pour assurer la sécurité et répondre aux urgences.",
-    },
+  const notOffered = [
+    'Soins des animaux domestiques',
+    'Organisation de loisirs',
+    'Transport',
+    "Accompagnement à l'extérieur",
   ];
 
   return (
     <PageTransition>
       <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative h-[60vh] flex items-center justify-center">
-          <div className="absolute inset-0">
-            <img
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&q=80"
-              alt="Services RSI Propulsion"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/50" />
-          </div>
+        <PageHero
+          image={pageHeroImages.services}
+          imageAlt="Services RSI Propulsion"
+          eyebrow="Nos services"
+          title="Un soutien adapté à chaque locataire"
+          subtitle={ORGANIZATION.description}
+        />
 
-          <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <motion.h1
-              className="text-5xl md:text-6xl font-bold text-white mb-6"
-              style={{ fontFamily: 'var(--font-heading)' }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Des services adaptés à vos besoins
-            </motion.h1>
-            <motion.p
-              className="text-xl text-white"
-              style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Un accompagnement complet pour favoriser votre autonomie et votre bien-être au quotidien
-            </motion.p>
+        <TwoColumnSection
+          bg="bg-white"
+          imageLeft={false}
+          eyebrow="Activités de la vie quotidienne"
+          title="Prendre soin de vous au quotidien"
+          body="Nos préposés aux bénéficiaires accompagnent chaque locataire dans les gestes essentiels du quotidien : l'hygiène personnelle, l'habillement, les transferts et les déplacements à l'intérieur du bâtiment. Chaque intervention est planifiée selon vos besoins et votre horaire."
+          items={[
+            "Aide à l'hygiène personnelle",
+            "Aide à l'habillement",
+            'Aide aux transferts et déplacements',
+            'Surveillance et présence rassurante',
+          ]}
+          image={siteImages.soinsQuotidien}
+          imageAlt="Accompagnement quotidien"
+        />
+
+        <SectionRule color="#D4A017" />
+
+        <TwoColumnSection
+          bg="bg-[#F9F8F6]"
+          imageLeft
+          eyebrow="Activités de la vie domestique"
+          title="Un chez-soi propre et bien tenu"
+          body="Maintenir un logement propre et organisé contribue directement à la qualité de vie et à la santé. Notre équipe prend en charge les tâches domestiques pour que vous puissiez vous concentrer sur ce qui vous tient à cœur."
+          items={[
+            'Ménage et entretien du logement',
+            'Lessive et changement de literie',
+            'Vaisselle',
+            'Vidange des poubelles',
+            'Préparation des repas',
+          ]}
+          image={siteImages.vieDomestique}
+          imageAlt="Logement propre et adapté"
+        />
+
+        <section className="bg-white py-24">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
+              <div>
+                <SectionEyebrow>Vie communautaire</SectionEyebrow>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-6 max-w-2xl" style={fontHeading}>
+                  La salle communautaire, cœur de la résidence
+                </h2>
+                <p className="text-[#6B6B6B] max-w-3xl" style={fontBody}>
+                  RSI Propulsion dispose d'une salle communautaire animée par notre chef cuisinier. Les repas y sont
+                  servis avec service aux tables, créant un moment de partage quotidien apprécié par nos locataires.
+                </p>
+              </div>
+              <ContentImage src={siteImages.repasCommunautaire} alt="Repas en salle communautaire" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <HoverCard className="p-10 border-l-4 border-[#E8621A]">
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-3" style={fontHeading}>
+                  Chef cuisinier
+                </h3>
+                <p className="text-[#6B6B6B]" style={fontBody}>
+                  Repas préparés et servis avec service dans la salle communautaire
+                </p>
+              </HoverCard>
+              <HoverCard className="p-10 border-l-4 border-[#8AAC2A]">
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-3" style={fontHeading}>
+                  Salle communautaire
+                </h3>
+                <p className="text-[#6B6B6B]" style={fontBody}>
+                  Espace disponible pour les activités et la vie sociale
+                </p>
+              </HoverCard>
+            </div>
           </div>
         </section>
 
-        <WaveDivider color="#F9F8F6" />
+        <ColorBand bg="#E8621A" height="min-h-[200px] py-16">
+          <div className="text-center text-white">
+            <p className="text-6xl md:text-8xl font-bold mb-4" style={fontHeading}>
+              24/7
+            </p>
+            <p className="text-lg md:text-xl max-w-xl mx-auto opacity-95" style={fontBody}>
+              Notre équipe est présente 24 heures sur 24, 7 jours sur 7 pour assurer votre sécurité et votre bien-être.
+            </p>
+          </div>
+        </ColorBand>
 
-        {/* Main Services Section */}
-        <section className="bg-[#F9F8F6] py-32">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="text-center mb-20">
-              <div className="flex justify-center mb-6">
-                <div className="w-12 h-1 bg-[#E8621A]" />
-              </div>
-              <h2
-                className="text-5xl font-bold mb-8 text-[#2C2C2C]"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                Nos services principaux
+        <section className="bg-white py-20">
+          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <SectionEyebrow>Partenariats</SectionEyebrow>
+              <h2 className="text-3xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+                Intégration communautaire et soins
               </h2>
-              <p
-                className="text-xl text-[#6B6B6B] max-w-3xl mx-auto"
-                style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-              >
-                Un éventail complet de services pour soutenir votre autonomie et votre qualité de vie
+              <p className="text-[#6B6B6B] mb-4" style={fontBody}>
+                RSI Propulsion favorise l'intégration sociale et le maintien de l'autonomie. Chaque locataire bénéficie
+                d'un plan de services individualisé élaboré avec un ergothérapeute selon ses besoins.
+              </p>
+              <p className="text-[#6B6B6B]" style={fontBody}>
+                Les services professionnels à domicile (ergothérapeute, travailleur social, infirmière, etc.) sont assurés
+                en collaboration avec le CIUSSS de l'Est-de-l'Île-de-Montréal. Équipements adaptés fournis par le CLSC
+                selon les besoins.
               </p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {mainServices.map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  className="bg-white rounded-2xl p-10 shadow-sm hover:shadow-xl transition-shadow duration-300 border-t-4"
-                  style={{ borderTopColor: service.color }}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                >
-                  <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center mb-6"
-                    style={{ backgroundColor: `${service.color}15` }}
-                  >
-                    <service.icon className="w-8 h-8" style={{ color: service.color }} />
-                  </div>
-                  <h3
-                    className="text-2xl font-bold mb-4 text-[#2C2C2C]"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p
-                    className="text-lg text-[#6B6B6B] mb-6"
-                    style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-                  >
-                    {service.description}
-                  </p>
-                  <div className="space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 flex-shrink-0" style={{ color: service.color }} />
-                        <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <ContentImage src={siteImages.servicesIntegres} alt="Services intégrés" />
           </div>
         </section>
 
-        <WaveDivider flip color="#FFFFFF" />
-
-        {/* Additional Services Section */}
-        <section className="bg-white py-32">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="text-center mb-20">
-              <div className="flex justify-center mb-6">
-                <div className="w-12 h-1 bg-[#E8621A]" />
-              </div>
-              <h2
-                className="text-5xl font-bold mb-8 text-[#2C2C2C]"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                Services complémentaires
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {additionalServices.map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  className="bg-[#F9F8F6] rounded-2xl p-10 shadow-sm hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#E8621A]"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                >
-                  <service.icon className="w-16 h-16 text-[#E8621A] mb-6" />
-                  <h3
-                    className="text-2xl font-bold mb-4 text-[#2C2C2C]"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p
-                    className="text-lg text-[#6B6B6B]"
-                    style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-                  >
-                    {service.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <WaveDivider color="#E8621A" />
-
-        {/* CTA Section */}
-        <section className="bg-[#E8621A] py-32 text-white">
+        <section className="bg-[#F9F8F6] py-20">
           <div className="max-w-[1200px] mx-auto px-6 text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-12 h-1 bg-white" />
+            <SectionEyebrow>À noter</SectionEyebrow>
+            <h2 className="text-2xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
+              Ce qui n'est pas inclus
+            </h2>
+            <p className="text-[#6B6B6B] mb-8 max-w-2xl mx-auto" style={fontBody}>
+              Par souci de transparence, voici les services qui ne font pas partie de notre offre.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {notOffered.map((chip) => (
+                <span
+                  key={chip}
+                  className="text-sm text-[#6B6B6B] bg-white px-5 py-2 rounded-full border border-gray-200"
+                  style={fontBody}
+                >
+                  ✗ {chip}
+                </span>
+              ))}
             </div>
-            <motion.h2
-              className="text-5xl font-bold mb-8"
-              style={{ fontFamily: 'var(--font-heading)' }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              Besoin de plus d'informations ?
-            </motion.h2>
-            <motion.p
-              className="text-xl mb-12 max-w-3xl mx-auto opacity-95"
-              style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              Notre équipe est disponible pour répondre à toutes vos questions sur nos services et vous accompagner dans
-              vos démarches.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <a href="/contact">
-                <Button className="bg-white hover:bg-gray-100 text-[#E8621A] rounded-full px-10 py-6 text-lg font-semibold shadow-xl inline-flex items-center gap-3">
-                  Nous contacter
-                  <ArrowRight className="w-5 h-5" />
+          </div>
+        </section>
+
+        <section className="bg-white py-24 text-center">
+          <div className="max-w-[700px] mx-auto px-6">
+            <h2 className="text-3xl font-bold text-[#2C2C2C] mb-8" style={fontHeading}>
+              Vous souhaitez en savoir plus sur nos services ?
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/contact">
+                <Button className="bg-[#E8621A] hover:bg-[#D45515] text-white rounded-full px-10 py-6" style={fontBody}>
+                  Contactez-nous
                 </Button>
-              </a>
-              <a href="/criteres">
+              </Link>
+              <Link to="/criteres">
                 <Button
                   variant="outline"
-                  className="border-2 border-white text-white hover:bg-white hover:text-[#E8621A] rounded-full px-10 py-6 text-lg font-semibold"
+                  className="border-2 border-[#E8621A] text-[#E8621A] rounded-full px-10 py-6"
+                  style={fontBody}
                 >
-                  Critères d'admission
+                  Voir les critères d'admission
+                  <ArrowRight className="w-4 h-4 ml-2 inline" />
                 </Button>
-              </a>
-            </motion.div>
+              </Link>
+            </div>
           </div>
         </section>
       </div>

@@ -1,68 +1,55 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
-import logoExterior from '../../imports/logement-RSI-exterieur.jpg';
-import logoHandicap from '../../imports/rsi-propulsion-handicap.jpg';
-
-const slides = [
-  {
-    image: logoExterior,
-    alt: 'Bâtiment RSI Propulsion - Façade extérieure et espaces communs à Hochelaga-Maisonneuve',
-  },
-  {
-    image: logoHandicap,
-    alt: 'Accessibilité et services adaptés pour personnes en situation de handicap',
-  },
-];
+import { heroSlides } from '../config/images';
 
 export function HeroCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 6000); // Change toutes les 6 secondes
-
+      setCurrentIndex((prev) => (prev + 1) % heroSlides.length);
+    }, 5500);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="absolute inset-0">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          className="absolute inset-0"
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }}
-        >
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#E8621A]/95 via-[#E8621A]/75 to-[#E8621A]/50 z-10" />
+    <div className="absolute inset-0 overflow-hidden bg-[#2C2C2C]" aria-hidden>
+      {heroSlides.map((slide, index) => (
+        <img
+          key={slide.src}
+          src={slide.src}
+          alt=""
+          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+            index === currentIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+          loading={index === 0 ? 'eager' : 'lazy'}
+          fetchPriority={index === 0 ? 'high' : 'low'}
+          decoding="async"
+        />
+      ))}
 
-          {/* Image */}
-          <ImageWithFallback
-            src={slides[currentIndex].image}
-            alt={slides[currentIndex].alt}
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </AnimatePresence>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#2C2C2C]/75 via-[#2C2C2C]/50 to-[#2C2C2C]/40 pointer-events-none" />
+      <div className="absolute inset-0 bg-[#2C2C2C]/15 pointer-events-none" />
 
-      {/* Indicateurs */}
-      <div className="absolute bottom-8 right-8 z-20 flex gap-2">
-        {slides.map((_, index) => (
+      {/* Indicateurs, petits, en bas à gauche */}
+      <div
+        className="absolute bottom-[7.25rem] sm:bottom-[8rem] left-6 sm:left-12 lg:left-20 z-20 flex items-center gap-1"
+        role="tablist"
+        aria-label="Images du carrousel"
+      >
+        {heroSlides.map((slide, index) => (
           <button
-            key={index}
+            key={slide.src}
+            type="button"
+            role="tab"
+            aria-selected={index === currentIndex}
             onClick={() => setCurrentIndex(index)}
-            className="group"
-            aria-label={`Aller à la diapositive ${index + 1}`}
+            className="p-1.5 rounded-sm hover:bg-white/10 transition-colors"
+            aria-label={`Image ${index + 1} sur ${heroSlides.length}`}
           >
-            <motion.div
-              className={`h-1 rounded-full transition-all ${
-                index === currentIndex ? 'bg-white w-12' : 'bg-white/50 w-8'
+            <span
+              className={`block h-1 rounded-full transition-all duration-300 ${
+                index === currentIndex ? 'bg-white w-5' : 'bg-white/45 w-2.5 hover:bg-white/70'
               }`}
-              whileHover={{ width: 48, backgroundColor: 'rgba(255,255,255,1)' }}
             />
           </button>
         ))}

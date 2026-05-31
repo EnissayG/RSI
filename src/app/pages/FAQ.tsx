@@ -4,9 +4,12 @@ import { ChevronDown, HelpCircle, Phone, Mail } from 'lucide-react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { PageTransition } from '../components/PageTransition';
 import { Card } from '../components/ui/card';
+import { PageHero, ContentImage, SectionEyebrow, fontBody, sectionPad } from '../components/layout/PageSections';
+import { siteImages, pageHeroImages } from '../config/images';
+import { ORGANIZATION } from '../config/organization';
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqCategories = [
     {
@@ -20,8 +23,15 @@ export function FAQ() {
         },
         {
           question: "Comment faire une demande d'admission ?",
-          answer:
-            "Contactez-nous par téléphone au (514) 251-2525 ou par courriel à info@rsipropulsion.ca pour obtenir le formulaire de demande. Une fois rempli, nous organiserons une rencontre pour évaluer vos besoins et vous faire visiter les lieux.",
+          answer: `Consultez les critères sur notre site, puis complétez le formulaire en ligne ou le PDF. Une entrevue de sélection sera organisée. Téléphone : ${ORGANIZATION.phone}, ${ORGANIZATION.email}. Une seule demande suffit pour le réseau ÉquiToît (${ORGANIZATION.equitoitNetwork.join(', ')}).`,
+        },
+        {
+          question: 'Qui peut habiter à RSI Propulsion ?',
+          answer: ORGANIZATION.clientele,
+        },
+        {
+          question: 'Quels documents dois-je fournir ?',
+          answer: ORGANIZATION.documentsAdmission.join(' · '),
         },
         {
           question: "Combien de temps faut-il attendre après avoir soumis une demande ?",
@@ -42,7 +52,7 @@ export function FAQ() {
         {
           question: 'Quel est le loyer mensuel ?',
           answer:
-            "Les logements sont subventionnés pour assurer un coût abordable. Le montant exact dépend de votre situation financière et est déterminé selon les normes de la Société d'habitation du Québec (SHQ). Contactez-nous pour une évaluation personnalisée.",
+            "Le loyer représente environ 25 % de votre revenu (normes SHQ). Des frais mensuels s'ajoutent pour la nourriture, l'entretien et les frais communs. Le Programme de supplément au loyer (PSL) peut s'appliquer. Contactez-nous pour une évaluation personnalisée.",
         },
         {
           question: "Qu'est-ce qui est inclus dans le loyer ?",
@@ -73,7 +83,7 @@ export function FAQ() {
         {
           question: 'Les repas sont-ils fournis ?',
           answer:
-            "Oui, trois repas par jour sont offerts : petit-déjeuner, dîner et souper. Les menus sont variés, équilibrés et peuvent être adaptés selon vos besoins alimentaires ou restrictions. Vous avez également accès à votre cuisinette pour préparer vos propres collations.",
+            "Un chef cuisinier prépare les repas servis à la salle communautaire avec service aux tables. Des frais mensuels de nourriture s'appliquent. Vous disposez aussi d'une cuisinette dans votre appartement.",
         },
         {
           question: 'Y a-t-il des activités sociales organisées ?',
@@ -89,6 +99,28 @@ export function FAQ() {
           question: "Puis-je garder mes propres professionnels de la santé ?",
           answer:
             "Oui, vous conservez le choix de vos professionnels de la santé (médecin, physiothérapeute, etc.). Notre équipe collabore avec eux pour assurer une continuité des soins adaptée à vos besoins.",
+        },
+      ],
+    },
+    {
+      category: 'Organisation et accès',
+      color: '#D4A017',
+      questions: [
+        {
+          question: 'Quelles sont vos heures de bureau ?',
+          answer: `Administration : ${ORGANIZATION.adminHours}. Services aux locataires : 24 h/24, 7 j/7.`,
+        },
+        {
+          question: 'Dans quels langues offrez-vous le service ?',
+          answer: ORGANIZATION.languages,
+        },
+        {
+          question: 'Dois-je habiter à Montréal pour postuler ?',
+          answer: ORGANIZATION.territory,
+        },
+        {
+          question: 'Où êtes-vous situés ?',
+          answer: `${ORGANIZATION.address.full}, quartier ${ORGANIZATION.address.neighbourhood}.`,
         },
       ],
     },
@@ -127,45 +159,27 @@ export function FAQ() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative h-[400px] overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#E8621A] to-[#D45515]" />
-          <div className="relative h-full flex items-center">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-              <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 text-white rounded-full text-sm font-medium mb-6"
-                style={{ fontFamily: 'var(--font-body)' }}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
-              >
-                <HelpCircle className="w-4 h-4" />
-                Foire aux questions
-              </motion.div>
-              <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
-                style={{ fontFamily: 'var(--font-heading)' }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Questions fréquentes
-              </motion.h1>
-              <motion.p
-                className="text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto"
-                style={{ fontFamily: 'var(--font-body)', lineHeight: 1.7 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                Trouvez rapidement des réponses à vos questions sur l'admission, les services et la vie à RSI
-                Propulsion
-              </motion.p>
+        <PageHero
+          image={pageHeroImages.faq}
+          imageAlt="FAQ, RSI Propulsion"
+          eyebrow="Foire aux questions"
+          title="Questions fréquentes"
+          subtitle="Trouvez rapidement des réponses à vos questions sur l'admission, les services et la vie à RSI Propulsion"
+        />
+
+        <section className={`bg-white ${sectionPad}`}>
+          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <ContentImage src={siteImages.faqAccompagnement} alt="Vie à RSI Propulsion" />
+            <div>
+              <SectionEyebrow>À propos</SectionEyebrow>
+              <p className="text-[#6B6B6B] text-lg" style={fontBody}>
+                Des questions sur l'admission, les services ou la vie en résidence ? Parcourez les réponses ci-dessous ou
+                contactez-nous directement.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section className="py-20 bg-[#F9F8F6]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             {faqCategories.map((category, catIndex) => (

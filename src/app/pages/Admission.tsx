@@ -4,12 +4,20 @@ import { Link } from 'react-router';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { PageTransition } from '../components/PageTransition';
-import { WaveDivider } from '../components/WaveDivider';
+import {
+  PageHero,
+  fontBody,
+  DocumentDownloadsRow,
+  SectionEyebrow,
+  ContentImage,
+  sectionPad,
+} from '../components/layout/PageSections';
+import { DOCUMENTS } from '../config/documents';
+import { siteImages, pageHeroImages } from '../config/images';
 
 const labelClass = 'block text-sm font-semibold text-[#2C2C2C] mb-2';
 const inputClass =
   'w-full px-4 py-3 bg-[#F9F8F6] border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#E8621A] focus:border-transparent transition-all';
-const fontBody = { fontFamily: 'var(--font-body)' };
 const fontHeading = { fontFamily: 'var(--font-heading)' };
 
 function FormLabel({ htmlFor, children, required }: { htmlFor?: string; children: ReactNode; required?: boolean }) {
@@ -84,7 +92,7 @@ export function Admission() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // Section 2 — residence
+  // Section 2, residence
   const [residenceFamiliale, setResidenceFamiliale] = useState(false);
   const [residenceIntermediaire, setResidenceIntermediaire] = useState(false);
   const [residenceChsld, setResidenceChsld] = useState(false);
@@ -190,60 +198,48 @@ export function Admission() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-white">
-        {/* Hero */}
-        <section className="relative h-[50vh] min-h-[360px] flex items-center justify-center">
-          <div className="absolute inset-0">
-            <img
-              src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920&q=80"
-              alt="Formulaire de demande d'inscription"
-              className="w-full h-full object-cover"
+        <PageHero
+          image={pageHeroImages.admission}
+          imageAlt="Formulaire de demande d'inscription"
+          title="Formulaire de demande d'inscription"
+          subtitle="Ce formulaire est un outil de pré-sélection pour le réseau ÉquiToît. Votre demande est valide pour les quatre ressources, une seule soumission suffit."
+        >
+          <Link
+            to="/criteres"
+            className="text-white underline underline-offset-4 hover:text-[#FFD4B8] transition-colors text-base"
+            style={fontBody}
+          >
+            Consulter les critères de sélection →
+          </Link>
+        </PageHero>
+
+        <section className={`bg-white ${sectionPad}`}>
+          <div className="max-w-[900px] mx-auto px-6">
+            <SectionEyebrow>Version PDF</SectionEyebrow>
+            <p className="text-[#6B6B6B] mb-6 text-center" style={fontBody}>
+              Vous préférez remplir le formulaire sur papier ? Téléchargez le PDF, puis contactez-nous pour le dépôt.
+            </p>
+            <DocumentDownloadsRow
+              documents={[
+                {
+                  title: DOCUMENTS.inscription.title,
+                  description: DOCUMENTS.inscription.description,
+                  href: DOCUMENTS.inscription.file,
+                  accent: '#E8621A',
+                },
+              ]}
             />
-            <div className="absolute inset-0 bg-black/50" />
-          </div>
-          <div className="relative z-10 text-center px-6 max-w-4xl">
-            <motion.h1
-              className="text-4xl md:text-5xl font-bold text-white mb-6"
-              style={fontHeading}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Formulaire de demande d'inscription
-            </motion.h1>
-            <motion.p
-              className="text-lg md:text-xl text-white mb-6"
-              style={{ ...fontBody, lineHeight: 1.75 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Ce formulaire est un outil de pré-sélection pour le réseau ÉquiToît. Votre demande est valide pour
-              les quatre ressources — une seule soumission suffit.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.35 }}
-            >
-              <Link
-                to="/criteres"
-                className="text-white underline underline-offset-4 hover:text-[#FFD4B8] transition-colors text-base"
-                style={fontBody}
-              >
-                Consulter les informations et critères de sélection →
-              </Link>
-            </motion.p>
           </div>
         </section>
 
-        <WaveDivider color="#F9F8F6" />
-
-        {/* Form */}
-        <section className="bg-[#F9F8F6] py-24">
+        <section className={`bg-[#F9F8F6] ${sectionPad}`}>
           <div className="max-w-[900px] mx-auto px-6">
+            <div className="mb-10 max-w-lg mx-auto">
+              <ContentImage src={siteImages.inscriptionAccueil} alt="Inscription RSI Propulsion" />
+            </div>
             <div className="text-center mb-12">
-              <div className="w-12 h-1 bg-[#E8621A] mx-auto mb-6" />
-              <h2 className="text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
+              <SectionEyebrow>En ligne</SectionEyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
                 Formulaire de demande d'inscription
               </h2>
               <p className="text-lg text-[#6B6B6B] max-w-2xl mx-auto" style={{ ...fontBody, lineHeight: 1.75 }}>
@@ -272,7 +268,7 @@ export function Admission() {
                 {/* Section 1 */}
                 <fieldset className="space-y-6">
                   <legend className="text-2xl font-bold text-[#2C2C2C] mb-6 w-full border-b border-gray-200 pb-3" style={fontHeading}>
-                    Section 1 — Informations personnelles
+                    Section 1, Informations personnelles
                   </legend>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -334,7 +330,7 @@ export function Admission() {
                 {/* Section 2 */}
                 <fieldset className="space-y-6">
                   <legend className="text-2xl font-bold text-[#2C2C2C] mb-6 w-full border-b border-gray-200 pb-3" style={fontHeading}>
-                    Section 2 — Situation actuelle du logement
+                    Section 2, Situation actuelle du logement
                   </legend>
 
                   <div>
@@ -366,7 +362,7 @@ export function Admission() {
                       <CheckboxRow
                         id="res-obnl"
                         name="residence-obnl"
-                        label="OBNL d'habitation — précisez lequel"
+                        label="OBNL d'habitation, précisez lequel"
                         checked={residenceObnl}
                         onChange={setResidenceObnl}
                       />
@@ -387,7 +383,7 @@ export function Admission() {
                       <CheckboxRow
                         id="res-autre"
                         name="residence-autre"
-                        label="Autre — précisez"
+                        label="Autre, précisez"
                         checked={residenceAutre}
                         onChange={setResidenceAutre}
                       />
@@ -445,7 +441,7 @@ export function Admission() {
                       <CheckboxRow
                         id="mob-ramq"
                         name="mobilite-ramq"
-                        label="En attente de la RAMQ — précisez"
+                        label="En attente de la RAMQ, précisez"
                         checked={mobiliteRamq}
                         onChange={setMobiliteRamq}
                       />
@@ -475,7 +471,7 @@ export function Admission() {
                         id="acc-non"
                         name="accessibilite"
                         value="non-accessible"
-                        label="Résidence non accessible — précisez"
+                        label="Résidence non accessible, précisez"
                         checked={accessibilite === 'non-accessible'}
                         onChange={() => setAccessibilite('non-accessible')}
                       />
@@ -530,7 +526,7 @@ export function Admission() {
                 {/* Section 3 */}
                 <fieldset className="space-y-6">
                   <legend className="text-2xl font-bold text-[#2C2C2C] mb-6 w-full border-b border-gray-200 pb-3" style={fontHeading}>
-                    Section 3 — Besoins et services
+                    Section 3, Besoins et services
                   </legend>
 
                   <div>
@@ -595,7 +591,7 @@ export function Admission() {
 
                   <div>
                     <p className={`${labelClass} mb-3`} style={fontBody}>
-                      Services actuels — qui dispense et combien d'heures
+                      Services actuels, qui dispense et combien d'heures
                     </p>
                     <div className="space-y-4">
                       <div className="flex flex-wrap items-center gap-4">
@@ -706,7 +702,7 @@ export function Admission() {
                         <CheckboxRow
                           id="svc-proche"
                           name="service-proche-aidant"
-                          label="Proche aidant — précisez"
+                          label="Proche aidant, précisez"
                           checked={serviceProche}
                           onChange={setServiceProche}
                         />
@@ -783,7 +779,7 @@ export function Admission() {
                 {/* Section 4 */}
                 <fieldset className="space-y-6">
                   <legend className="text-2xl font-bold text-[#2C2C2C] mb-6 w-full border-b border-gray-200 pb-3" style={fontHeading}>
-                    Section 4 — Informations additionnelles
+                    Section 4, Informations additionnelles
                   </legend>
 
                   <div>
@@ -815,7 +811,7 @@ export function Admission() {
                       <CheckboxRow
                         id="q-autre"
                         name="quartier-autre"
-                        label="Autre — précisez"
+                        label="Autre, précisez"
                         checked={quartierAutre}
                         onChange={setQuartierAutre}
                       />

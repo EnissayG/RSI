@@ -6,6 +6,42 @@ import { Card } from '../components/ui/card';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { AnimatedCard } from '../components/AnimatedCard';
 import { PageTransition } from '../components/PageTransition';
+import {
+  PageHero,
+  HoverCard,
+  ContentImage,
+  fontHeading,
+  fontBody,
+  sectionPad,
+} from '../components/layout/PageSections';
+import { siteImages, pageHeroImages } from '../config/images';
+import { Heart, Users, Home } from 'lucide-react';
+
+const valueCards = [
+  {
+    icon: Heart,
+    color: '#E8621A',
+    title: 'Travail qui a du sens',
+    body: 'Chaque journée contribue directement au bien-être et à la dignité de nos locataires.',
+  },
+  {
+    icon: Users,
+    color: '#8AAC2A',
+    title: 'Équipe bienveillante',
+    body: 'Un milieu convivial où l\'entraide et le respect guident nos actions.',
+  },
+  {
+    icon: Home,
+    color: '#D4A017',
+    title: 'Milieu inclusif',
+    body: 'Rejoignez une organisation ancrée dans Hochelaga-Maisonneuve depuis plus de 25 ans.',
+  },
+];
+
+function applyMailto(title: string) {
+  const subject = encodeURIComponent(`Candidature, ${title}`);
+  window.location.href = `mailto:info@rsipropulsion.ca?subject=${subject}`;
+}
 
 export function Careers() {
   const [formData, setFormData] = useState({
@@ -95,66 +131,51 @@ export function Careers() {
   return (
     <PageTransition>
       <div className="min-h-screen">
-        {/* Hero Section */}
-        <section className="bg-[#F9F8F6] py-20 lg:py-32">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div
-              className="inline-block px-4 py-2 bg-[#E8621A] text-white rounded-full text-sm font-medium mb-6"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              Rejoignez l'équipe
-            </motion.div>
-            <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#2C2C2C]"
-              style={{ fontFamily: 'var(--font-heading)' }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Faites carrière avec nous
-            </motion.h1>
-            <motion.p
-              className="text-lg md:text-xl text-[#6B6B6B] leading-relaxed mb-8 max-w-3xl mx-auto"
-              style={{ fontFamily: 'var(--font-body)', lineHeight: 1.7 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Vous cherchez un milieu de travail agréable, convivial et valorisant ? N'hésitez pas et joignez-vous à la
-              grande famille de RSI Propulsion. Le bonheur est ici !
-            </motion.p>
-            <motion.div
-              className="text-base text-[#6B6B6B] mb-8"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              2075 rue Théodore · info@rsipropulsion.ca
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Button
-                className="bg-[#E8621A] hover:bg-[#D45515] text-white rounded-lg px-8 py-6 min-h-[44px] shadow-md hover:shadow-lg transition-all text-base"
-                style={{ fontFamily: 'var(--font-body)' }}
-                onClick={() => (window.location.href = 'mailto:info@rsipropulsion.ca')}
-              >
-                Envoyer ma candidature
-              </Button>
-            </motion.div>
+        <PageHero
+          image={pageHeroImages.carriere}
+          imageAlt="Carrières chez RSI Propulsion"
+          eyebrow="Joignez-vous à nous"
+          title="Faites carrière avec nous"
+          subtitle="Vous cherchez un milieu de travail agréable, convivial et valorisant ? N'hésitez pas et joignez-vous à la grande famille de RSI Propulsion. Le bonheur est ici !"
+        >
+          <p className="text-base text-[#6B6B6B] mb-6 text-center" style={fontBody}>
+            2075 rue Théodore · info@rsipropulsion.ca
+          </p>
+          <Button
+            className="bg-[#E8621A] hover:bg-[#D45515] text-white rounded-lg px-8 py-6 min-h-[44px] shadow-md hover:shadow-lg transition-all text-base"
+            style={fontBody}
+            onClick={() => (window.location.href = 'mailto:info@rsipropulsion.ca')}
+          >
+            Envoyer ma candidature
+          </Button>
+        </PageHero>
+
+        <section className={`bg-white ${sectionPad}`}>
+          <div className="max-w-[1200px] mx-auto px-6 mb-14">
+            <ContentImage src={siteImages.carriereMilieu} alt="Milieu de travail RSI Propulsion" />
+          </div>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {valueCards.map((card) => (
+              <HoverCard key={card.title} className="p-8 text-center">
+                <div
+                  className="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center"
+                  style={{ backgroundColor: card.color }}
+                >
+                  <card.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-[#2C2C2C] mb-2" style={fontHeading}>
+                  {card.title}
+                </h3>
+                <p className="text-[#6B6B6B] text-sm" style={fontBody}>
+                  {card.body}
+                </p>
+              </HoverCard>
+            ))}
           </div>
         </section>
 
         {/* Job Listings */}
-        <section className="bg-white py-20">
+        <section className="bg-[#F9F8F6] py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <motion.div
@@ -188,7 +209,7 @@ export function Careers() {
                       </span>
                     </div>
                     <h3
-                      className="text-2xl font-semibold mb-3 text-[#2C2C2C]"
+                      className="text-2xl md:text-3xl font-bold mb-3 text-[#2C2C2C]"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
                       {job.title}
@@ -253,9 +274,9 @@ export function Careers() {
                       <Button
                         className="w-full bg-[#E8621A] hover:bg-[#D45515] text-white rounded-lg py-6 min-h-[44px] shadow-md hover:shadow-lg transition-all"
                         style={{ fontFamily: 'var(--font-body)' }}
-                        onClick={() => (window.location.href = 'mailto:info@rsipropulsion.ca')}
+                        onClick={() => applyMailto(job.title)}
                       >
-                        Postuler maintenant
+                        Postuler
                       </Button>
                     </motion.div>
                   </Card>

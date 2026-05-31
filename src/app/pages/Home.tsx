@@ -1,527 +1,717 @@
 import { Link } from 'react-router';
-import { Heart, Check, ArrowRight, Home as HomeIcon, Users, Utensils, Clock, Phone, Mail } from 'lucide-react';
+import {
+  Heart,
+  Users,
+  Home as HomeIcon,
+  Phone,
+  Mail,
+  ArrowRight,
+  Clock,
+  MapPin,
+  ExternalLink,
+} from 'lucide-react';
 import { motion } from 'motion/react';
 import { Button } from '../components/ui/button';
 import { PageTransition } from '../components/PageTransition';
-import { WaveDivider } from '../components/WaveDivider';
+import { HeroCarousel } from '../components/HeroCarousel';
+import {
+  SectionEyebrow,
+  SectionRule,
+  ColorBand,
+  StatNumber,
+  HoverCard,
+  PayPalDonateButton,
+  fontHeading,
+  fontBody,
+  sectionPad,
+} from '../components/layout/PageSections';
+import { siteImages } from '../config/images';
+import { ORGANIZATION } from '../config/organization';
+import { OrgFactsGrid } from '../components/layout/OrgFactsGrid';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '../components/ui/accordion';
+const missionCards = [
+  {
+    color: '#E8621A',
+    title: 'Un vrai chez-soi',
+    body: "15 appartements 3½ entièrement adaptés dans Hochelaga-Maisonneuve, salon, cuisinette, chambre fermée et salle de bain adaptée. Un logement qui vous ressemble, à tarif abordable.",
+  },
+  {
+    color: '#D4A017',
+    title: 'Des services qui comptent',
+    body: "Aide aux activités de la vie quotidienne (AVQ) et domestique (AVD), planifiée selon vos besoins. Une équipe de préposés présente 24 h/24, 7 j/7 pour votre sécurité et votre autonomie.",
+  },
+  {
+    color: '#8AAC2A',
+    title: 'Une vie de quartier',
+    body: "Repas à la salle communautaire, activités sociales et ancrage dans un quartier reconnu pour sa solidarité. RSI Propulsion, c'est un milieu de vie normalisant et chaleureux.",
+  },
+];
+
+const heroStats = [
+  { value: '15', label: 'Unités', hint: null },
+  {
+    value: 'AVQ & AVD',
+    label: 'Aide quotidienne & domestique',
+    hint: 'Hygiène, habillement, repas, ménage, offert par nos préposés sur place',
+  },
+  { value: 'Depuis 2011', label: 'À Montréal', hint: null },
+];
+
+const admissionSteps = [
+  {
+    step: '01',
+    title: 'Lire les critères',
+    body: "Vérifiez l'admissibilité (âge, autonomie, besoins AVQ/AVD) et les coûts avant de vous lancer.",
+    to: '/criteres',
+    label: 'Critères',
+  },
+  {
+    step: '02',
+    title: 'Préparer le dossier',
+    body: "Formulaire d'inscription et OCCI (Outil de Cheminement Clinique Informatisé), selon la procédure du réseau ÉquiToît.",
+    to: '/criteres',
+    label: 'Documents PDF',
+  },
+  {
+    step: '03',
+    title: 'Soumettre la demande',
+    body: 'Complétez le formulaire en ligne ou contactez-nous, une seule demande couvre les quatre ressources du réseau.',
+    to: '/admission',
+    label: 'Inscription',
+  },
+  {
+    step: '04',
+    title: 'Suivi personnalisé',
+    body: "Notre équipe évalue votre dossier et vous contacte dès qu'un logement correspondant se libère.",
+    to: '/contact',
+    label: 'Contact',
+  },
+];
+
+const exploreLinks = [
+  { to: '/services', title: 'Nos services', desc: 'AVQ, AVD, repas et vie communautaire' },
+  { to: '/equipe', title: "L'équipe", desc: 'Direction et conseil d\'administration' },
+  { to: '/historique', title: 'Notre histoire', desc: 'Plus de 25 ans à Hochelaga-Maisonneuve' },
+  { to: '/carriere', title: 'Carrières', desc: 'Joignez une équipe engagée' },
+];
+
+const faqItems = [
+  {
+    q: 'Qui peut faire une demande de logement ?',
+    a: "Toute personne âgée de 18 à 59 ans présentant une déficience physique avec ou sans atteinte cognitive légère, capable d'habiter seule en appartement avec un soutien adapté.",
+  },
+  {
+    q: "Est-ce que je peux postuler si j'habite en dehors de Montréal ?",
+    a: 'Oui. RSI Propulsion accepte les demandes de partout au Québec.',
+  },
+  {
+    q: 'Combien coûte un logement ?',
+    a: "Le loyer représente 25 % de votre revenu. Des frais mensuels s'ajoutent : 275 $ pour la nourriture, 45 $ pour l'entretien et 20 $ pour les frais communs. Le programme PSL (Supplément au Loyer) peut s'appliquer.",
+  },
+  {
+    q: 'Quels documents dois-je fournir ?',
+    a: "Le formulaire de demande d'inscription et votre OCCI (Outil de Cheminement Clinique Informatisé).",
+  },
+];
 
 export function Home() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-white">
-        {/* Hero Section - Full Screen 100vh */}
-        <section className="relative h-screen flex items-center justify-center">
-          <div className="absolute inset-0">
-            <img
-              src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1920&q=80"
-              alt="RSI Propulsion"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/50" />
+        {/* Hero, contenu à gauche, stats en barre en bas */}
+        <section className="relative min-h-screen flex flex-col">
+          <HeroCarousel />
+
+          <div className="relative z-10 flex-1 flex items-center pt-28 pb-8">
+            <div className="w-full max-w-[1800px] mx-auto px-8 sm:px-12 lg:px-20">
+              <div className="max-w-2xl lg:max-w-3xl text-left">
+                <motion.p
+                  className="text-[#E8621A] uppercase tracking-[0.15em] text-xs font-semibold mb-5"
+                  style={fontBody}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  Hochelaga-Maisonneuve · Montréal
+                </motion.p>
+                <motion.h1
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-[1.1]"
+                  style={fontHeading}
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.75 }}
+                >
+                  Des logements abordables et adaptés
+                </motion.h1>
+                <motion.p
+                  className="text-lg sm:text-xl md:text-2xl text-white/95 mb-10 max-w-xl leading-relaxed"
+                  style={fontBody}
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.75, delay: 0.12 }}
+                >
+                  Un milieu de vie adapté, chaleureux et inclusif pour personnes en situation de handicap
+                </motion.p>
+                <motion.div
+                  className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5"
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.75, delay: 0.24 }}
+                >
+                  <Link to="/criteres">
+                    <Button className="bg-[#E8621A] hover:bg-[#D45515] text-white rounded-full px-10 py-6 text-base sm:text-lg font-semibold shadow-xl w-full sm:w-auto min-w-[220px]">
+                      Critères d'admission
+                    </Button>
+                  </Link>
+                  <PayPalDonateButton className="w-full sm:w-auto" size="lg" />
+                </motion.div>
+              </div>
+            </div>
           </div>
 
-          <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-            <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-white leading-tight"
-              style={{ fontFamily: 'var(--font-heading)' }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Des logements abordables et adaptés
-            </motion.h1>
-
-            <motion.p
-              className="text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto"
-              style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Un milieu de vie adapté, chaleureux et inclusif pour personnes en situation de handicap
-            </motion.p>
-
-            <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <Link to="/criteres">
-                <Button className="bg-[#E8621A] hover:bg-[#D45515] text-white rounded-full px-12 py-7 text-lg font-semibold shadow-2xl min-w-[260px]">
-                  Critères d'admission
-                </Button>
-              </Link>
-              <Link to="/faire-un-don">
-                <Button className="bg-white hover:bg-gray-100 text-[#E8621A] rounded-full px-12 py-7 text-lg font-semibold shadow-2xl min-w-[260px] flex items-center gap-3 justify-center">
-                  <Heart className="w-6 h-6" />
-                  Faire un don
-                </Button>
-              </Link>
-            </motion.div>
-
-            <motion.div
-              className="flex flex-wrap justify-center gap-12 mt-16 text-white"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div>
-                <div className="text-5xl font-bold mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                  15
-                </div>
-                <div className="text-sm uppercase tracking-widest opacity-90" style={{ fontFamily: 'var(--font-body)' }}>
-                  Unités
-                </div>
+          <motion.div
+            className="relative z-10 w-full border-t border-white/20 bg-[#2C2C2C]/55 backdrop-blur-sm"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+          >
+            <div className="max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-20 py-10 md:py-12">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-0">
+                {heroStats.map((stat, index) => (
+                  <div
+                    key={stat.label}
+                    className={`flex flex-col items-center text-center px-4 ${
+                      index > 0 ? 'sm:border-l sm:border-white/20' : ''
+                    }`}
+                    title={stat.hint ?? undefined}
+                  >
+                    <span
+                      className={`font-bold text-white mb-2 leading-none ${
+                        stat.value === 'AVQ & AVD'
+                          ? 'text-3xl sm:text-4xl lg:text-5xl'
+                          : 'text-4xl sm:text-5xl lg:text-6xl'
+                      }`}
+                      style={fontHeading}
+                    >
+                      {stat.value}
+                    </span>
+                    <span
+                      className="text-xs sm:text-sm uppercase tracking-[0.18em] text-white/85 font-semibold"
+                      style={fontBody}
+                    >
+                      {stat.label}
+                    </span>
+                    {stat.hint && (
+                      <span
+                        className="mt-2 text-[11px] sm:text-xs text-white/60 normal-case tracking-normal max-w-[220px] leading-snug hidden sm:block"
+                        style={fontBody}
+                      >
+                        {stat.hint}
+                      </span>
+                    )}
+                  </div>
+                ))}
               </div>
-              <div className="hidden sm:block w-px h-16 bg-white/30" />
-              <div>
-                <div className="text-4xl font-bold mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                  AVQ & AVD
-                </div>
-                <div className="text-sm uppercase tracking-widest opacity-90" style={{ fontFamily: 'var(--font-body)' }}>
-                  Services
-                </div>
-              </div>
-              <div className="hidden sm:block w-px h-16 bg-white/30" />
-              <div>
-                <div className="text-4xl font-bold mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                  Depuis 2011
-                </div>
-                <div className="text-sm uppercase tracking-widest opacity-90" style={{ fontFamily: 'var(--font-body)' }}>
-                  À Montréal
-                </div>
-              </div>
-            </motion.div>
+            </div>
+          </motion.div>
+
+        </section>
+
+        <SectionRule />
+
+        <section className={`bg-white ${sectionPad}`}>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="text-center mb-12 max-w-3xl mx-auto">
+              <SectionEyebrow>RSI Propulsion en bref</SectionEyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+                {ORGANIZATION.legalName}
+              </h2>
+              <p className="text-[#6B6B6B] mb-4" style={fontBody}>
+                {ORGANIZATION.mission}
+              </p>
+              <p className="text-[#6B6B6B]" style={fontBody}>
+                {ORGANIZATION.description}
+              </p>
+            </div>
+            <OrgFactsGrid className="mt-10 md:mt-12" />
           </div>
         </section>
 
-        <WaveDivider color="#F9F8F6" />
-
-        {/* About Section - 2 Column Layout */}
-        <section className="bg-[#F9F8F6] py-32">
+        <section className={`bg-[#F9F8F6] ${sectionPad}`}>
           <div className="max-w-[1200px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               <div>
-                <div className="w-12 h-1 bg-[#E8621A] mb-6" />
-                <h2
-                  className="text-5xl font-bold mb-8 text-[#2C2C2C]"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                >
-                  Une communication basée sur le respect
+                <SectionEyebrow>Services intégrés</SectionEyebrow>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+                  Plus qu'un logement : un accompagnement complet
                 </h2>
-                <p
-                  className="text-lg text-[#6B6B6B] mb-6"
-                  style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-                >
-                  Le Regroupement de services intégrés Propulsion offre 15 appartements adaptés accueillant des
-                  personnes en situation de déficience motrice et/ou de déficience cognitive légère.
+                <p className="text-[#6B6B6B] mb-6" style={fontBody}>
+                  {ORGANIZATION.clientele} Chez nous, chaque locataire bénéficie d'un plan de services
+                  individualisé, élaboré avec un ergothérapeute, et d'une équipe de préposés aux bénéficiaires
+                  présente en tout temps.
                 </p>
-                <p
-                  className="text-lg text-[#6B6B6B] mb-8"
-                  style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-                >
-                  C'est un « Chez-moi » bien à eux, à tarif des plus abordables, avec une gamme de services aux
-                  activités de la vie quotidienne et domestique disponible 24 heures sur 24, 7 jours sur 7.
-                </p>
-                <div className="flex flex-wrap gap-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-[#E8621A] flex items-center justify-center">
-                      <Heart className="w-6 h-6 text-white" />
-                    </div>
-                    <span className="text-base font-semibold text-[#2C2C2C]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Compassion
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-[#D4A017] flex items-center justify-center">
-                      <Users className="w-6 h-6 text-white" />
-                    </div>
-                    <span className="text-base font-semibold text-[#2C2C2C]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Inclusion
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-[#8AAC2A] flex items-center justify-center">
-                      <HomeIcon className="w-6 h-6 text-white" />
-                    </div>
-                    <span className="text-base font-semibold text-[#2C2C2C]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Autonomie
-                    </span>
-                  </div>
-                </div>
+                <ul className="space-y-3">
+                  {[
+                    'Aide aux activités de la vie quotidienne (AVQ) : hygiène, habillement, transferts',
+                    'Aide aux activités de la vie domestique (AVD) : ménage, lessive, repas',
+                    'Repas à la salle communautaire avec chef cuisinier',
+                    'Services professionnels en partenariat avec le CIUSSS de l\'Est-de-l\'Île-de-Montréal',
+                  ].map((line) => (
+                    <li key={line} className="flex gap-3 text-[#6B6B6B]" style={fontBody}>
+                      <span className="text-[#E8621A] shrink-0 mt-1">•</span>
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link to="/services" className="inline-flex items-center gap-2 mt-8 text-[#E8621A] font-semibold hover:underline" style={fontBody}>
+                  Découvrir tous nos services
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
-
-              <motion.div
-                className="relative h-[500px] rounded-2xl overflow-hidden shadow-xl"
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
+              <div className="rounded-2xl overflow-hidden shadow-xl aspect-[4/3] lg:aspect-auto lg:min-h-[360px]">
                 <img
-                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
-                  alt="Logement RSI Propulsion"
+                  src={siteImages.accompagnement24h}
+                  alt="Accompagnement intégré RSI Propulsion"
                   className="w-full h-full object-cover"
                 />
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
 
-        <WaveDivider flip color="#FFFFFF" />
+        <SectionRule />
 
-        {/* Services Grid - Detailed */}
-        <section className="bg-white py-32">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="text-center mb-20">
-              <div className="flex justify-center mb-6">
-                <div className="w-12 h-1 bg-[#E8621A]" />
-              </div>
-              <h2
-                className="text-5xl font-bold mb-8 text-[#2C2C2C]"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                Ce que nous offrons
+        {/* Mission */}
+        <section className="bg-[#F9F8F6]">
+          <div className={`max-w-[1200px] mx-auto px-6 ${sectionPad}`}>
+            <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+              <SectionEyebrow>Notre raison d'être</SectionEyebrow>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#2C2C2C]" style={fontHeading}>
+                Un milieu de vie qui fait la différence
               </h2>
+              <p className="mt-5 text-[#6B6B6B]" style={fontBody}>
+                {ORGANIZATION.description}
+              </p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <motion.div
-                className="bg-white rounded-2xl p-10 shadow-sm hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#E8621A]"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-[#E8621A]/10 flex items-center justify-center flex-shrink-0">
-                    <HomeIcon className="w-8 h-8 text-[#E8621A]" />
-                  </div>
-                  <div>
-                    <h3
-                      className="text-2xl font-bold mb-2 text-[#2C2C2C]"
-                      style={{ fontFamily: 'var(--font-heading)' }}
-                    >
-                      15 logements adaptés
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-stretch">
+              {missionCards.map((card, i) => (
+                <article
+                  key={card.title}
+                  className="flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
+                >
+                  <img
+                    src={[siteImages.missionChezSoi, siteImages.missionServices, siteImages.missionVieQuartier][i]}
+                    alt={card.title}
+                    className="w-full h-44 object-cover shrink-0"
+                  />
+                  <div className="flex flex-col flex-1 p-8 pt-7">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span
+                        className="text-xs font-bold uppercase tracking-widest tabular-nums"
+                        style={{ color: card.color, fontFamily: 'var(--font-body)' }}
+                      >
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="h-px flex-1 bg-gray-200" aria-hidden />
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#2C2C2C]" style={fontHeading}>
+                      {card.title}
                     </h3>
-                    <p className="text-sm text-[#E8621A] font-semibold" style={{ fontFamily: 'var(--font-body)' }}>
-                      Appartements 3½
+                    <p className="text-[#6B6B6B] text-base flex-1" style={fontBody}>
+                      {card.body}
                     </p>
                   </div>
-                </div>
-                <p
-                  className="text-lg text-[#6B6B6B] mb-6"
-                  style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-                >
-                  Bâtiment entièrement adapté et accessible. Appartements équipés avec salon, cuisinette, chambre
-                  fermée et salle de bain adaptée selon les besoins de chaque locataire. Loyer subventionné.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#E8621A]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Cuisine et salle de bain accessibles
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#E8621A]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Équipements adaptés personnalisés
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#E8621A]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Tarifs abordables et subventionnés
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="bg-white rounded-2xl p-10 shadow-sm hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#D4A017]"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-[#D4A017]/10 flex items-center justify-center flex-shrink-0">
-                    <Utensils className="w-8 h-8 text-[#D4A017]" />
-                  </div>
-                  <div>
-                    <h3
-                      className="text-2xl font-bold mb-2 text-[#2C2C2C]"
-                      style={{ fontFamily: 'var(--font-heading)' }}
-                    >
-                      Services alimentaires
-                    </h3>
-                    <p className="text-sm text-[#D4A017] font-semibold" style={{ fontFamily: 'var(--font-body)' }}>
-                      Chef cuisinier sur place
-                    </p>
-                  </div>
-                </div>
-                <p
-                  className="text-lg text-[#6B6B6B] mb-6"
-                  style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-                >
-                  Trois repas équilibrés par jour préparés par notre chef cuisinier et servis à la salle
-                  communautaire. Menus variés et adaptés selon les besoins alimentaires.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#D4A017]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Petit-déjeuner, dîner et souper
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#D4A017]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Menus adaptés aux restrictions
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#D4A017]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Service en salle communautaire
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
+                </article>
+              ))}
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div
-                className="bg-white rounded-2xl p-10 shadow-sm hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#8AAC2A]"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+          </div>
+          <div className="mt-16 md:mt-20 lg:mt-24">
+            <ColorBand bg="#E8621A" height="min-h-[140px] py-12 md:py-14">
+              <p
+                className="text-white text-center text-xl md:text-2xl max-w-4xl italic px-6"
+                style={{ ...fontHeading, lineHeight: 1.55 }}
               >
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-[#8AAC2A]/10 flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-8 h-8 text-[#8AAC2A]" />
-                  </div>
-                  <div>
-                    <h3
-                      className="text-2xl font-bold mb-2 text-[#2C2C2C]"
-                      style={{ fontFamily: 'var(--font-heading)' }}
-                    >
-                      Soutien 24 heures sur 24
-                    </h3>
-                    <p className="text-sm text-[#8AAC2A] font-semibold" style={{ fontFamily: 'var(--font-body)' }}>
-                      Préposés aux bénéficiaires
-                    </p>
-                  </div>
-                </div>
-                <p
-                  className="text-lg text-[#6B6B6B] mb-6"
-                  style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-                >
-                  Équipe de préposés aux bénéficiaires expérimentés et dévoués offrant des services de qualité pour
-                  les activités de la vie quotidienne (AVQ) et domestique (AVD).
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#8AAC2A]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Aide à l'hygiène et l'habillage
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#8AAC2A]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Soutien pour les déplacements
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#8AAC2A]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Gestion des médicaments
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
+                « Offrir un milieu de vie normalisant à des personnes qui méritent un chez-soi digne, adapté et
+                chaleureux. »
+              </p>
+            </ColorBand>
+          </div>
+        </section>
 
-              <motion.div
-                className="bg-[#F9F8F6] rounded-2xl p-10 shadow-sm hover:shadow-xl transition-shadow duration-300 border-t-4 border-[#E8621A]"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-[#E8621A]/10 flex items-center justify-center flex-shrink-0">
-                    <Users className="w-8 h-8 text-[#E8621A]" />
-                  </div>
-                  <div>
-                    <h3
-                      className="text-2xl font-bold mb-2 text-[#2C2C2C]"
-                      style={{ fontFamily: 'var(--font-heading)' }}
-                    >
-                      Vie communautaire active
-                    </h3>
-                    <p className="text-sm text-[#E8621A] font-semibold" style={{ fontFamily: 'var(--font-body)' }}>
-                      Activités et intégration
-                    </p>
-                  </div>
-                </div>
-                <p
-                  className="text-lg text-[#6B6B6B] mb-6"
-                  style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-                >
-                  Programme d'activités sociales, culturelles et récréatives pour favoriser l'intégration et le
-                  maintien d'une vie sociale active. Journal des locataires créé par et pour les résidents.
+        <section className={`bg-white ${sectionPad}`}>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div>
+                <SectionEyebrow>Réseau ÉquiToît</SectionEyebrow>
+                <h2 className="text-3xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+                  Une seule demande pour quatre ressources
+                </h2>
+                <p className="text-[#6B6B6B] mb-6" style={fontBody}>
+                  RSI Propulsion fait partie du réseau ÉquiToît. En soumettant votre formulaire d'inscription, votre
+                  demande est valide pour l'ensemble des ressources partenaires :
                 </p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#E8621A]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Activités sociales régulières
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#E8621A]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Salle communautaire accessible
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#E8621A]" />
-                    <span className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Journal créé par les locataires
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
+                <ul className="space-y-2 mb-8">
+                  {ORGANIZATION.equitoitNetwork.map((name) => (
+                    <li key={name} className="flex items-center gap-2 text-[#2C2C2C] font-semibold" style={fontBody}>
+                      <span className="w-2 h-2 rounded-full bg-[#E8621A]" />
+                      {name}
+                    </li>
+                  ))}
+                </ul>
+                <Link to="/criteres" className="text-[#E8621A] font-semibold hover:underline" style={fontBody}>
+                  Voir les critères complets →
+                </Link>
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-xl h-[320px]">
+                <img src={siteImages.equitoitReseau} alt="Vie en communauté RSI" className="w-full h-full object-cover" />
+              </div>
             </div>
+            <div className="mt-14 bg-[#F9F8F6] rounded-2xl p-8 md:p-10 border-l-4 border-[#8AAC2A]">
+              <h3 className="text-xl font-bold text-[#2C2C2C] mb-3" style={fontHeading}>
+                Journal des locataires
+              </h3>
+              <p className="text-[#6B6B6B]" style={fontBody}>
+                Nos locataires conçoivent et rédigent un petit journal qui partage la vie à RSI Propulsion, activités,
+                témoignages et nouvelles du quotidien. C'est une vitrine authentique de notre communauté.
+              </p>
+            </div>
+          </div>
+        </section>
 
+        <SectionRule />
+
+        <section className={`bg-[#F9F8F6] ${sectionPad}`}>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="text-center mb-12 max-w-2xl mx-auto">
+              <SectionEyebrow>Admission</SectionEyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
+                Comment déposer une demande ?
+              </h2>
+              <p className="text-[#6B6B6B]" style={fontBody}>
+                Une démarche simple, en quatre étapes. Votre demande est aussi valide pour les partenaires du réseau
+                ÉquiToît.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {admissionSteps.map((item) => (
+                <HoverCard key={item.step} className="p-6 md:p-8 h-full flex flex-col border-t-4 border-[#E8621A]">
+                  <span className="text-3xl font-bold text-[#E8621A]/30 mb-3" style={fontHeading}>
+                    {item.step}
+                  </span>
+                  <h3 className="text-lg font-bold text-[#2C2C2C] mb-3" style={fontHeading}>
+                    {item.title}
+                  </h3>
+                  <p className="text-[#6B6B6B] text-sm flex-1 mb-4" style={fontBody}>
+                    {item.body}
+                  </p>
+                  <Link to={item.to} className="text-[#E8621A] text-sm font-semibold hover:underline" style={fontBody}>
+                    {item.label} →
+                  </Link>
+                </HoverCard>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <SectionRule color="#D4A017" />
+
+        {/* Services */}
+        <section className={`bg-white ${sectionPad}`}>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <SectionEyebrow>Ce que nous offrons</SectionEyebrow>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#2C2C2C] mb-12" style={fontHeading}>
+              Un accompagnement complet, 24h/24
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+              <div className="rounded-2xl overflow-hidden shadow-xl h-[420px]">
+                <img
+                  src={siteImages.accompagnement24h}
+                  alt="Accompagnement et vie communautaire"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <p className="text-[#6B6B6B] mb-10" style={fontBody}>
+                  Chez RSI Propulsion, nos locataires bénéficient d'un soutien adapté à leur réalité. Notre équipe de
+                  préposés aux bénéficiaires est présente en tout temps pour assurer leur sécurité, leur confort et leur
+                  autonomie.
+                </p>
+                <div className="space-y-6">
+                  {[
+                    {
+                      color: '#E8621A',
+                      title: 'AVQ',
+                      desc: "Aide à l'hygiène, à l'habillement et aux transferts",
+                    },
+                    {
+                      color: '#8AAC2A',
+                      title: 'AVD',
+                      desc: 'Ménage, lessive, vaisselle et préparation des repas',
+                    },
+                    {
+                      color: '#D4A017',
+                      title: 'Repas',
+                      desc: 'Chef cuisinier et salle communautaire avec service',
+                    },
+                    {
+                      color: '#E8621A',
+                      title: 'Sécurité',
+                      desc: 'Présence et surveillance 24 heures sur 24, 7 jours sur 7',
+                    },
+                  ].map((row) => (
+                    <div key={row.title} className="flex gap-4 items-start">
+                      <div
+                        className="w-3 h-3 rounded-full mt-2 flex-shrink-0"
+                        style={{ backgroundColor: row.color }}
+                      />
+                      <div>
+                        <p className="font-bold text-[#2C2C2C]" style={fontBody}>
+                          {row.title}
+                        </p>
+                        <p className="text-[#6B6B6B]" style={fontBody}>
+                          {row.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-3 mt-10">
+                  {['Transport', 'Soins des animaux', 'Organisation de loisirs'].map((chip) => (
+                    <span
+                      key={chip}
+                      className="text-sm text-[#6B6B6B] bg-[#F9F8F6] px-4 py-2 rounded-full border border-gray-200"
+                      style={fontBody}
+                    >
+                      ✗ {chip}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
             <div className="text-center mt-12">
               <Link to="/services">
                 <Button
                   variant="outline"
-                  className="border-2 border-[#E8621A] text-[#E8621A] hover:bg-[#E8621A] hover:text-white rounded-full px-10 py-6 text-lg font-semibold inline-flex items-center gap-3"
+                  className="border-2 border-[#E8621A] text-[#E8621A] hover:bg-[#E8621A] hover:text-white rounded-full px-10 py-6"
+                  style={fontBody}
                 >
                   En savoir plus sur nos services
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-5 h-5 ml-2 inline" />
                 </Button>
               </Link>
             </div>
           </div>
         </section>
 
-        <WaveDivider color="#E8621A" />
-
-        {/* CTA Section - Orange Background */}
-        <section className="bg-[#E8621A] py-32 text-white">
-          <div className="max-w-[1200px] mx-auto px-6 text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-12 h-1 bg-white" />
-            </div>
-            <motion.h2
-              className="text-5xl font-bold mb-8"
-              style={{ fontFamily: 'var(--font-heading)' }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              Votre don change des vies
-            </motion.h2>
-            <motion.p
-              className="text-xl mb-12 max-w-3xl mx-auto opacity-95"
-              style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              Appuyez RSI Propulsion en faisant un don en ligne, de façon simple et sécuritaire. Chaque contribution
-              nous aide à offrir un milieu de vie adapté et chaleureux.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <Link to="/faire-un-don">
-                <Button className="bg-white hover:bg-gray-100 text-[#E8621A] rounded-full px-12 py-7 text-xl font-semibold shadow-2xl inline-flex items-center gap-3">
-                  Faire un don maintenant
-                  <Heart className="w-6 h-6" />
-                </Button>
-              </Link>
-              <p className="text-sm mt-6 opacity-90" style={{ fontFamily: 'var(--font-body)' }}>
-                No. de charité: 870969068RR0001 • Reçu fiscal pour tout don supérieur à 20 $
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        <WaveDivider flip color="#F9F8F6" />
-
-        {/* Contact Quick Section */}
-        <section className="bg-[#F9F8F6] py-32">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="text-center mb-16">
-              <div className="flex justify-center mb-6">
-                <div className="w-12 h-1 bg-[#E8621A]" />
-              </div>
-              <h2
-                className="text-5xl font-bold mb-8 text-[#2C2C2C]"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                Prêt à faire le premier pas ?
+        <section className="relative bg-[#F9F8F6] pb-20 md:pb-24">
+          <ColorBand bg="#E8621A" height="h-[100px]" className="mb-0" />
+          <div className="max-w-[1200px] mx-auto px-6 -mt-[40px] relative z-10">
+            <HoverCard className="p-10 md:p-14 border-t-4 border-[#E8621A]">
+              <SectionEyebrow>Admission</SectionEyebrow>
+              <h2 className="text-4xl font-bold text-[#2C2C2C] mb-10" style={fontHeading}>
+                Faites votre demande de logement
               </h2>
-              <p
-                className="text-xl text-[#6B6B6B] max-w-3xl mx-auto"
-                style={{ fontFamily: 'var(--font-body)', lineHeight: 1.75 }}
-              >
-                Notre équipe est là pour répondre à toutes vos questions et vous accompagner dans vos démarches
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 pb-10 border-b border-gray-200">
+                <StatNumber value="18 à 59" label="ans, tranche d'âge admissible" />
+                <StatNumber value="25h" label="max. services planifiables / semaine" />
+                <StatNumber value="25%" label="du revenu pour le loyer" />
+              </div>
+              <p className="text-[#6B6B6B] mb-8 max-w-3xl" style={fontBody}>
+                RSI Propulsion accueille des adultes présentant une déficience physique avec ou sans atteinte cognitive
+                légère. Consultez nos critères de sélection et complétez le formulaire, une seule demande suffit pour le
+                réseau ÉquiToît.
               </p>
+              <div className="flex flex-wrap gap-4">
+                <Link to="/criteres">
+                  <Button className="bg-[#E8621A] hover:bg-[#D45515] text-white rounded-full px-8 py-5" style={fontBody}>
+                    Voir les critères
+                  </Button>
+                </Link>
+                <Link to="/admission">
+                  <Button
+                    variant="outline"
+                    className="border-2 border-[#E8621A] text-[#E8621A] rounded-full px-8 py-5"
+                    style={fontBody}
+                  >
+                    Formulaire d'inscription
+                  </Button>
+                </Link>
+              </div>
+            </HoverCard>
+          </div>
+        </section>
+
+        <SectionRule color="#8AAC2A" />
+
+        <section className={`bg-white ${sectionPad}`}>
+          <div className="max-w-[1200px] mx-auto px-6 mb-14">
+            <div className="text-center mb-10">
+              <SectionEyebrow>Explorer le site</SectionEyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C]" style={fontHeading}>
+                Aller plus loin
+              </h2>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-              <motion.a
-                href="tel:5142512525"
-                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex items-center gap-6 border-l-4 border-[#E8621A]"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {exploreLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="bg-[#F9F8F6] rounded-2xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all border border-gray-100 group"
+                >
+                  <h3 className="text-lg font-bold text-[#2C2C2C] mb-2 group-hover:text-[#E8621A] transition-colors" style={fontHeading}>
+                    {link.title}
+                  </h3>
+                  <p className="text-sm text-[#6B6B6B]" style={fontBody}>
+                    {link.desc}
+                  </p>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-[#6B6B6B]" style={fontBody}>
+              <span className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-[#E8621A]" />
+                {ORGANIZATION.adminHours}
+              </span>
+              <span className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[#E8621A]" />
+                {ORGANIZATION.address.neighbourhood}
+              </span>
+              <a
+                href={ORGANIZATION.resource211}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-[#E8621A] font-semibold hover:underline"
               >
-                <div className="w-16 h-16 rounded-full bg-[#E8621A] flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-8 h-8 text-white" />
-                </div>
-                <div className="text-left">
-                  <p className="text-sm text-[#6B6B6B] mb-1" style={{ fontFamily: 'var(--font-body)' }}>
-                    Téléphone
-                  </p>
-                  <p className="text-xl font-bold text-[#2C2C2C]" style={{ fontFamily: 'var(--font-heading)' }}>
-                    (514) 251-2525
-                  </p>
-                </div>
-              </motion.a>
+                Fiche 211 Grand Montréal
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        </section>
 
-              <motion.a
-                href="mailto:info@rsipropulsion.ca"
-                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex items-center gap-6 border-l-4 border-[#D4A017]"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                <div className="w-16 h-16 rounded-full bg-[#D4A017] flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-8 h-8 text-white" />
+        <SectionRule />
+
+        {/* FAQ */}
+        <section className={`bg-[#F9F8F6] ${sectionPad}`}>
+          <div className="max-w-[800px] mx-auto px-6">
+            <div className="text-center mb-12">
+              <SectionEyebrow>Questions fréquentes</SectionEyebrow>
+              <h2 className="text-4xl font-bold text-[#2C2C2C]" style={fontHeading}>
+                Vous avez des questions ?
+              </h2>
+            </div>
+            <Accordion type="single" collapsible className="w-full">
+              {faqItems.map((item, i) => (
+                <AccordionItem key={i} value={`faq-${i}`} className="border-[#E8621A]/20">
+                  <AccordionTrigger className="text-left text-[#2C2C2C] font-semibold hover:text-[#E8621A]" style={fontBody}>
+                    {item.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[#6B6B6B]" style={fontBody}>
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            <p className="text-center mt-8">
+              <Link to="/faq" className="text-[#E8621A] font-semibold hover:underline" style={fontBody}>
+                Voir toutes les questions →
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-[#E8621A] py-20 md:py-24 text-white text-center">
+          <div className="max-w-[900px] mx-auto px-6">
+            <SectionEyebrow>
+              <span className="text-white/90">Soutenez notre mission</span>
+            </SectionEyebrow>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={fontHeading}>
+              Votre don change des vies
+            </h2>
+            <p className="text-lg mb-10 opacity-95" style={fontBody}>
+              Chaque contribution nous aide à maintenir des logements dignes, des services quotidiens et une vie
+              communautaire enrichissante pour nos locataires.
+            </p>
+            <PayPalDonateButton size="lg" />
+            <p className="mt-4 text-sm opacity-80" style={fontBody}>
+              <Link to="/faire-un-don" className="underline hover:text-white">
+                En savoir plus sur les dons
+              </Link>
+            </p>
+            <p className="mt-8 text-sm opacity-95" style={fontBody}>
+              <strong>No. de charité : 138775119RR0001</strong>
+              <br />
+              Reçu fiscal émis pour tout don supérieur à 20 $
+            </p>
+          </div>
+        </section>
+
+        <section className={`bg-white ${sectionPad}`}>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div>
+                <SectionEyebrow>Contact</SectionEyebrow>
+                <h2 className="text-4xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+                  Prêt à faire le premier pas ?
+                </h2>
+                <p className="text-[#6B6B6B] mb-4" style={fontBody}>
+                  {ORGANIZATION.address.full}, {ORGANIZATION.address.neighbourhood}
+                </p>
+                <p className="text-[#6B6B6B] mb-6" style={fontBody}>
+                  {ORGANIZATION.adminHours}. Notre équipe répond sous 24 à 48 heures ouvrables.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Link to="/contact">
+                    <Button className="bg-[#E8621A] hover:bg-[#D45515] text-white rounded-full px-8 py-5" style={fontBody}>
+                      Page contact
+                    </Button>
+                  </Link>
+                  <Link to="/faq">
+                    <Button variant="outline" className="border-2 border-[#E8621A] text-[#E8621A] rounded-full px-8 py-5" style={fontBody}>
+                      FAQ complète
+                    </Button>
+                  </Link>
                 </div>
-                <div className="text-left">
-                  <p className="text-sm text-[#6B6B6B] mb-1" style={{ fontFamily: 'var(--font-body)' }}>
-                    Courriel
-                  </p>
-                  <p className="text-xl font-bold text-[#2C2C2C]" style={{ fontFamily: 'var(--font-heading)' }}>
-                    info@rsipropulsion.ca
-                  </p>
-                </div>
-              </motion.a>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <a
+                  href="tel:5142512525"
+                  className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all border-l-4 border-[#E8621A] flex items-center gap-4"
+                >
+                  <div className="w-14 h-14 rounded-full bg-[#E8621A] flex items-center justify-center">
+                    <Phone className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#6B6B6B]" style={fontBody}>
+                      Téléphone
+                    </p>
+                    <p className="font-bold text-[#2C2C2C]" style={fontHeading}>
+                      (514) 251-2525
+                    </p>
+                  </div>
+                </a>
+                <a
+                  href="mailto:info@rsipropulsion.ca"
+                  className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all border-l-4 border-[#D4A017] flex items-center gap-4"
+                >
+                  <div className="w-14 h-14 rounded-full bg-[#D4A017] flex items-center justify-center">
+                    <Mail className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#6B6B6B]" style={fontBody}>
+                      Courriel
+                    </p>
+                    <p className="font-bold text-[#2C2C2C] text-sm" style={fontHeading}>
+                      info@rsipropulsion.ca
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </section>

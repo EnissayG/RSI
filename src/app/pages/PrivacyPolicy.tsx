@@ -3,6 +3,8 @@ import { motion } from 'motion/react';
 import { Card } from '../components/ui/card';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { PageTransition } from '../components/PageTransition';
+import { PageHero, ContentImage, fontBody, sectionPad } from '../components/layout/PageSections';
+import { siteImages, pageHeroImages } from '../config/images';
 
 export function PrivacyPolicy() {
   const sections = [
@@ -14,7 +16,11 @@ Lorsque vous visitez ce site, seule l'adresse IP de votre appareil est relevée 
     },
     {
       title: 'Fichiers journaux et témoins (cookies)',
-      content: `RSI Propulsion utilise Google Analytics pour améliorer ses services. Cet outil collecte : adresse IP, système d'exploitation, pages visitées, heure et jour de connexion. Aucune information permettant d'identifier personnellement un individu n'est collectée via Google Analytics. Vous pouvez gérer vos préférences de cookies via notre outil de gestion des consentements disponible sur ce site.`,
+      content: `Lors de votre visite, des données techniques peuvent être enregistrées dans les fichiers journaux du serveur (adresse IP, type d'appareil, pages consultées, date et heure de connexion). Ces données servent à assurer la sécurité et le bon fonctionnement du site.
+
+Un bandeau vous permet d'accepter ou de refuser l'enregistrement de votre choix dans le stockage local de votre navigateur (clé « rsi-cookie-consent »). Ce choix est conservé pour ne pas vous redemander à chaque visite.
+
+RSI Propulsion n'utilise pas de témoins publicitaires ni de profilage à des fins commerciales. Si des outils de mesure d'audience venaient à être ajoutés, ils ne seraient activés qu'avec votre consentement explicite.`,
     },
     {
       title: "Formulaire de contact et d'admission",
@@ -31,39 +37,24 @@ Vous pouvez également vider le cache et supprimer les cookies de votre navigate
   return (
     <PageTransition>
       <div className="min-h-screen bg-white">
-        <section className="bg-gradient-to-br from-[#E8621A] to-[#D45515] py-20 lg:py-28">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div
-              className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full mb-6"
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+        <PageHero
+          image={pageHeroImages.confidentialite}
+          imageAlt="RSI Propulsion"
+          showRule={false}
+          leading={
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full">
               <Shield className="w-10 h-10 text-[#E8621A]" />
-            </motion.div>
-            <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
-              style={{ fontFamily: 'var(--font-heading)' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Politique de confidentialité et protection des renseignements personnels
-            </motion.h1>
-            <motion.p
-              className="text-lg md:text-xl text-white leading-relaxed max-w-2xl mx-auto"
-              style={{ fontFamily: 'var(--font-body)', lineHeight: 1.7 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Dernière mise à jour : 2024
-            </motion.p>
-          </div>
-        </section>
+            </div>
+          }
+          title="Politique de confidentialité et protection des renseignements personnels"
+          subtitle="Dernière mise à jour : 2024"
+        />
 
-        <section className="py-16">
+        <section className={sectionPad}>
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 max-w-2xl mx-auto">
+              <ContentImage src={siteImages.confidentialite} alt="Protection des renseignements personnels" />
+            </div>
             <Card className="bg-[#F9F8F6] rounded-2xl shadow-lg p-8 md:p-10 mb-12">
               <p
                 className="text-base text-[#6B6B6B]"
@@ -131,7 +122,7 @@ Vous pouvez également vider le cache et supprimer les cookies de votre navigate
                     {/* TODO: confirm email address with client */}
                   </p>
                   <p className="text-base text-[#6B6B6B]" style={{ fontFamily: 'var(--font-body)' }}>
-                    RSI Propulsion — 2075 rue Théodore, Montréal (Québec) H1V 3C1
+                    RSI Propulsion, 2075 rue Théodore, Montréal (Québec) H1V 3C1
                   </p>
                 </div>
 

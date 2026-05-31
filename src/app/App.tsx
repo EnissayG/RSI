@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { CookieConsent } from './components/CookieConsent';
 import { SkipToContent } from './components/SkipToContent';
+import { ScrollToTop } from './components/ScrollToTop';
 import { Home } from './pages/Home';
 import { Donate } from './pages/Donate';
 import { Careers } from './pages/Careers';
@@ -18,14 +19,13 @@ import { Admission } from './pages/Admission';
 
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || undefined;
 
-export default function App() {
+function AppRoutes() {
+  const location = useLocation();
+
   return (
-    <BrowserRouter basename={routerBasename}>
-      <div className="min-h-screen flex flex-col">
-        <SkipToContent />
-        <Navigation />
-        <main id="main-content" className="flex-1">
-          <Routes>
+    <>
+      <ScrollToTop />
+      <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/faire-un-don" element={<Donate />} />
             <Route path="/carriere" element={<Careers />} />
@@ -40,7 +40,19 @@ export default function App() {
             <Route path="/criteres" element={<Criteria />} />
             <Route path="/services" element={<Services />} />
             <Route path="/faq" element={<FAQ />} />
-          </Routes>
+      </Routes>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter basename={routerBasename}>
+      <div className="min-h-screen flex flex-col">
+        <SkipToContent />
+        <Navigation />
+        <main id="main-content" className="flex-1">
+          <AppRoutes />
         </main>
         <Footer />
         <CookieConsent />
