@@ -1,33 +1,37 @@
 # Déployer sur GitHub Pages
 
-## 1. Activer GitHub Pages (obligatoire, une seule fois)
+## Erreur « Setup Pages » ou « Not Found » ?
 
-L’erreur `404` / `Ensure GitHub Pages has been enabled` signifie que Pages n’est pas encore activé.
+Cela signifie que **GitHub Pages n’est pas encore activé** sur le dépôt. Le workflow ne peut pas déployer tant que cette étape n’est pas faite **une seule fois** dans les réglages GitHub.
 
-1. Ouvrez : **https://github.com/EnissayG/RSI/settings/pages**
-2. Sous **Build and deployment** → **Source**, choisissez **GitHub Actions** (pas « Deploy from a branch »).
-3. Enregistrez si un bouton **Save** apparaît.
+## Activation (obligatoire)
 
-## 2. Lancer le déploiement
+1. Connectez-vous à GitHub avec le compte propriétaire du dépôt **EnissayG/RSI**.
+2. Ouvrez : **https://github.com/EnissayG/RSI/settings/pages**
+3. Section **Build and deployment** :
+   - **Source** : sélectionnez **GitHub Actions** (pas « Deploy from a branch »).
+4. Cliquez sur **Save** si le bouton est visible.
+5. Attendez quelques secondes, puis allez dans **Actions** → **Deploy GitHub Pages** → **Run workflow**.
 
-- Chaque push sur `main` déclenche le workflow **Deploy GitHub Pages**.
-- Ou : onglet **Actions** → **Deploy GitHub Pages** → **Run workflow**.
+## Vérifier le succès
 
-## 3. URL du site
+- Le job **build** doit être vert (Upload Pages artifact).
+- Le job **deploy** doit être vert (Deploy to GitHub Pages).
+- Le site : **https://enissayg.github.io/RSI/**
 
-Après succès du workflow :
+## Si « deploy » échoue encore
 
-**https://enissayg.github.io/RSI/**
+- Vérifiez que la branche poussée est bien **`main`** (le workflow ne tourne que sur `main`).
+- Dans **Settings → Pages**, la source doit rester **GitHub Actions**.
+- Relancez le workflow manuellement après avoir sauvegardé les réglages.
 
-(Le chemin `/RSI/` correspond au nom du dépôt `EnissayG/RSI`.)
-
-## 4. Test en local (même chemin que en production)
+## Test local
 
 ```bash
 npm run build:pages
 npm run preview:pages
 ```
 
-## 5. Netlify
+## Netlify (autre hébergement)
 
-Si vous utilisez Netlify à la place, gardez `npm run build` (sans `VITE_BASE_PATH`) et le fichier `netlify.toml` du projet.
+Pour Netlify, utilisez `npm run build` sans `VITE_BASE_PATH` et le fichier `netlify.toml` du projet.

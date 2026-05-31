@@ -1,5 +1,8 @@
-# Déploiement sur https://enissayg.github.io/RSI/
-# Prérequis : Réglages du dépôt → Pages → Source = « GitHub Actions »
+# Site : https://enissayg.github.io/RSI/
+#
+# AVANT le premier déploiement (sinon erreur 404) :
+# GitHub → EnissayG/RSI → Settings → Pages → Source = « GitHub Actions » → Save
+#
 name: Deploy GitHub Pages
 
 on:
@@ -23,9 +26,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -38,10 +38,9 @@ jobs:
       - name: Build for GitHub Pages
         run: npm run build
         env:
-          # Chemin = nom du dépôt (ex. /RSI/ pour EnissayG/RSI)
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
