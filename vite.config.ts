@@ -16,7 +16,7 @@ function figmaAssetResolver() {
   }
 }
 
-// Base path pour GitHub Pages : https://enissayg.github.io/rsipropultion/
+// Base path GitHub Pages : https://enissayg.github.io/RSI/ (voir build:pages)
 const base = process.env.VITE_BASE_PATH || '/'
 
 export default defineConfig({
