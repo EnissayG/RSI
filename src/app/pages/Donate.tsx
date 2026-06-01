@@ -11,6 +11,9 @@ import {
   fontHeading,
   fontBody,
   sectionPad,
+  pageContainer,
+  sectionHeaderMb,
+  headingSection,
 } from '../components/layout/PageSections';
 import { PAYPAL_DONATE_URL } from '../config/links';
 import { siteImages, pageHeroImages } from '../config/images';
@@ -57,10 +60,10 @@ export function Donate() {
         </PageHero>
 
         <section className={`bg-[#F9F8F6] ${sectionPad}`}>
-          <div className="max-w-[720px] mx-auto px-6 text-center">
+          <div className="max-w-[720px] mx-auto px-4 sm:px-6 text-center">
             <AnimatedSection>
               <SectionEyebrow>Don sécurisé</SectionEyebrow>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+              <h2 className={`${headingSection} mb-4 sm:mb-6`} style={fontHeading}>
                 Faire un don en ligne
               </h2>
               <p className="text-[#6B6B6B] mb-10" style={fontBody}>
@@ -83,17 +86,17 @@ export function Donate() {
         </section>
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="mb-14 max-w-3xl mx-auto">
+          <div className={pageContainer}>
+            <div className="mb-8 sm:mb-12 md:mb-14 max-w-3xl mx-auto">
               <ContentImage src={siteImages.donSolidarite} alt="Soutien à RSI Propulsion" />
             </div>
-            <div className="text-center mb-14">
+            <div className={`text-center ${sectionHeaderMb}`}>
               <SectionEyebrow>Votre impact</SectionEyebrow>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C]" style={fontHeading}>
+              <h2 className={headingSection} style={fontHeading}>
                 Où va votre don
               </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {impactAreas.map((area, index) => (
                 <motion.div
                   key={area.title}
@@ -103,7 +106,7 @@ export function Donate() {
                   transition={{ duration: 0.5, delay: index * 0.08 }}
                 >
                   <Card
-                    className="p-8 rounded-2xl bg-[#F9F8F6] border-0 shadow-sm h-full border-t-4"
+                    className="p-5 sm:p-6 md:p-8 rounded-2xl bg-[#F9F8F6] border-0 shadow-sm h-full border-t-4"
                     style={{ borderTopColor: area.color }}
                   >
                     <div
@@ -126,11 +129,11 @@ export function Donate() {
         </section>
 
         <section className={`bg-[#E8621A] ${sectionPad} text-white text-center`}>
-          <div className="max-w-[800px] mx-auto px-6">
+          <div className="max-w-[800px] mx-auto px-4 sm:px-6">
             <div className="flex justify-center mb-6">
               <Shield className="w-12 h-12 text-white/90" aria-hidden />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={fontHeading}>
+            <h2 className={`${headingSection} mb-4 sm:mb-6`} style={fontHeading}>
               Avantages fiscaux
             </h2>
             <p className="mb-8 opacity-95" style={fontBody}>

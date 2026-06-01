@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
+import { ScrollLink } from './ScrollLink';
 import { Menu, X, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/button';
@@ -30,6 +31,7 @@ export function Navigation() {
     { path: '/criteres', label: 'Critères' },
     { path: '/admission', label: 'Inscription' },
     { path: '/equipe', label: "L'équipe" },
+    { path: '/historique', label: 'Notre histoire' },
     { path: '/faq', label: 'FAQ' },
     { path: '/contact', label: 'Contact' },
   ];
@@ -43,10 +45,10 @@ export function Navigation() {
       animate={{ y: 0 }}
       transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <div className="max-w-[1800px] mx-auto px-8 sm:px-12 lg:px-20">
-        <div className="flex items-center justify-between h-24">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="flex items-center justify-between h-[4.5rem] md:h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center min-w-fit group">
+          <ScrollLink to="/" className="flex items-center min-w-fit group">
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
@@ -57,7 +59,7 @@ export function Navigation() {
                 className="h-12 w-auto"
               />
             </motion.div>
-          </Link>
+          </ScrollLink>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -68,7 +70,7 @@ export function Navigation() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.3 }}
               >
-                <Link
+                <ScrollLink
                   to={link.path}
                   className={`relative text-base transition-all duration-200 hover:text-[#E8621A] ${
                     isActive(link.path) ? 'text-[#E8621A]' : 'text-[#2C2C2C]'
@@ -83,7 +85,7 @@ export function Navigation() {
                       transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                     />
                   )}
-                </Link>
+                </ScrollLink>
               </motion.div>
             ))}
           </div>
@@ -95,7 +97,7 @@ export function Navigation() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.3 }}
           >
-            <Link to="/faire-un-don">
+            <ScrollLink to="/faire-un-don">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   className="bg-[#E8621A] hover:bg-[#D45515] text-white rounded-lg px-6 py-5 min-h-[44px] min-w-[44px] flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-200"
@@ -110,7 +112,7 @@ export function Navigation() {
                   Faire un don
                 </Button>
               </motion.div>
-            </Link>
+            </ScrollLink>
           </motion.div>
 
           {/* Mobile Menu Button */}
@@ -150,7 +152,7 @@ export function Navigation() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              className="md:hidden pb-4 space-y-2 overflow-hidden"
+              className="md:hidden pb-5 pt-1 space-y-1.5 overflow-hidden border-t border-gray-100 mt-1"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -163,18 +165,18 @@ export function Navigation() {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: index * 0.05, duration: 0.2 }}
                 >
-                  <Link
+                  <ScrollLink
                     to={link.path}
-                    className={`block px-4 py-3 rounded-lg min-h-[44px] transition-all duration-200 ${
+                    className={`block px-3 py-2.5 rounded-lg min-h-[44px] text-[15px] transition-all duration-200 ${
                       isActive(link.path)
                         ? 'bg-[#E8621A] text-white'
                         : 'text-[#2C2C2C] hover:bg-[#F9F8F6]'
                     }`}
                     style={{ fontFamily: 'var(--font-body)' }}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onNavigate={() => setMobileMenuOpen(false)}
                   >
                     {link.label}
-                  </Link>
+                  </ScrollLink>
                 </motion.div>
               ))}
               <motion.div
@@ -182,7 +184,7 @@ export function Navigation() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: navLinks.length * 0.05, duration: 0.2 }}
               >
-                <Link to="/faire-un-don" onClick={() => setMobileMenuOpen(false)}>
+                <ScrollLink to="/faire-un-don" onNavigate={() => setMobileMenuOpen(false)} className="block">
                   <Button
                     className="w-full bg-[#E8621A] hover:bg-[#D45515] text-white rounded-lg py-5 min-h-[44px] flex items-center justify-center gap-2 shadow-md"
                     style={{ fontFamily: 'var(--font-body)' }}
@@ -190,7 +192,7 @@ export function Navigation() {
                     <Heart className="w-5 h-5" />
                     Faire un don
                   </Button>
-                </Link>
+                </ScrollLink>
               </motion.div>
             </motion.div>
           )}

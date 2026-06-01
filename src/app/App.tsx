@@ -35,6 +35,7 @@ function AppRoutes() {
             {/* Placeholder pages */}
             <Route path="/equipe" element={<Team />} />
             <Route path="/historique" element={<History />} />
+            <Route path="/notre-histoire" element={<History />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admission" element={<Admission />} />
             <Route path="/criteres" element={<Criteria />} />

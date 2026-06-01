@@ -15,7 +15,27 @@ import { Button } from '../ui/button';
 import { PAYPAL_DONATE_URL } from '../../config/links';
 
 export const fontHeading = { fontFamily: 'var(--font-heading)' };
-export const fontBody = { fontFamily: 'var(--font-body)', lineHeight: 1.75, fontSize: '17px' };
+export const fontBody = {
+  fontFamily: 'var(--font-body)',
+  lineHeight: 1.75,
+  fontSize: 'clamp(15px, 3.6vw, 17px)',
+};
+
+/** Espacement vertical standard des sections */
+export const sectionPad = 'py-12 sm:py-16 md:py-24';
+
+/** Conteneur de page (marges latérales mobile serrées) */
+export const pageContainer = 'max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8';
+
+export const pageContainerWide = 'max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12';
+
+export const sectionGap = 'gap-8 md:gap-12 lg:gap-16';
+
+export const sectionGapTight = 'gap-6 md:gap-10 lg:gap-14';
+
+export const sectionHeaderMb = 'mb-8 md:mb-12';
+
+export const headingSection = 'text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C2C2C]';
 
 export function SectionEyebrow({ children }: { children: ReactNode }) {
   return (
@@ -97,7 +117,7 @@ export function PageHero({
   return (
     <>
       <section
-        className="relative min-h-[52vh] flex items-center"
+        className="relative min-h-[40vh] sm:min-h-[48vh] md:min-h-[52vh] flex items-center"
         style={bgStyle}
       >
         {isImage && (
@@ -105,7 +125,7 @@ export function PageHero({
             <img
               src={image}
               alt={imageAlt || title}
-              className="w-full h-full min-h-[52vh] object-cover object-center"
+              className="w-full h-full min-h-[40vh] sm:min-h-[48vh] md:min-h-[52vh] object-cover object-center"
               loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#2C2C2C]/80 via-[#2C2C2C]/55 to-[#2C2C2C]/45" />
@@ -113,7 +133,7 @@ export function PageHero({
         )}
 
         <div
-          className={`relative z-10 w-full max-w-[1200px] mx-auto px-6 sm:px-12 lg:px-20 py-20 md:py-24 ${
+          className={`relative z-10 w-full ${pageContainer} py-14 sm:py-16 md:py-24 ${
             align === 'center' ? 'text-center' : 'text-left'
           }`}
         >
@@ -141,7 +161,7 @@ export function PageHero({
             </motion.p>
           )}
           <motion.h1
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight ${
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight ${
               textLight ? 'text-white' : 'text-[#2C2C2C]'
             }`}
             style={fontHeading}
@@ -153,7 +173,7 @@ export function PageHero({
           </motion.h1>
           {subtitle && (
             <motion.p
-              className={`text-lg md:text-xl max-w-3xl ${align === 'center' ? 'mx-auto' : ''} ${
+              className={`text-base sm:text-lg md:text-xl max-w-3xl ${align === 'center' ? 'mx-auto' : ''} ${
                 textLight ? 'text-white/95' : 'text-[#6B6B6B]'
               }`}
               style={fontBody}
@@ -191,8 +211,8 @@ export function ValuesBand() {
   ];
 
   return (
-    <section className="bg-[#E8621A] py-14">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section className="bg-[#E8621A] py-10 sm:py-14">
+      <div className={pageContainer}>
         <div className="flex flex-wrap justify-center gap-8 md:gap-14">
           {values.map(({ label, icon: Icon }) => (
             <div key={label} className="flex flex-col items-center gap-2 text-white min-w-[100px]">
@@ -236,8 +256,8 @@ export function Blockquote({
 }) {
   return (
     <blockquote
-      className={`border-l-4 border-[#E8621A] pl-6 italic text-[#2C2C2C] ${className}`}
-      style={{ ...fontHeading, fontSize: '1.35rem', lineHeight: 1.6 }}
+      className={`border-l-4 border-[#E8621A] pl-4 sm:pl-6 italic text-[#2C2C2C] text-lg sm:text-xl md:text-[1.35rem] ${className}`}
+      style={{ ...fontHeading, lineHeight: 1.6 }}
     >
       {children}
     </blockquote>
@@ -262,7 +282,7 @@ export function PayPalDonateButton({
       <Button
         type="button"
         className={`bg-white hover:bg-[#F9F8F6] text-[#E8621A] font-semibold shadow-xl inline-flex items-center gap-2 ${
-          isLg ? 'rounded-full px-10 py-6 text-lg' : 'rounded-full px-8 py-5'
+          isLg ? 'rounded-full px-6 sm:px-10 py-5 sm:py-6 text-base sm:text-lg w-full sm:w-auto' : 'rounded-full px-6 sm:px-8 py-4 sm:py-5 w-full sm:w-auto'
         }`}
         style={fontBody}
       >
@@ -273,9 +293,6 @@ export function PayPalDonateButton({
     </a>
   );
 }
-
-/** Espacement vertical standard des sections de contenu */
-export const sectionPad = 'py-20 md:py-24';
 
 export function ContentImage({
   src,
@@ -295,7 +312,7 @@ export function ContentImage({
       <img
         src={src}
         alt={alt}
-        className="w-full h-full min-h-[200px] object-cover object-center bg-[#E8E6E3]"
+        className="w-full h-full min-h-[180px] sm:min-h-[220px] object-cover object-center bg-[#E8E6E3]"
         loading="lazy"
       />
     </div>
@@ -360,8 +377,8 @@ export function DocumentDownloadsRow({
 
 export function StatNumber({ value, label }: { value: string; label: string }) {
   return (
-    <div className="text-center px-4">
-      <div className="text-4xl md:text-5xl font-bold text-[#E8621A] mb-2" style={fontHeading}>
+    <div className="text-center px-2 sm:px-4">
+      <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#E8621A] mb-1 sm:mb-2" style={fontHeading}>
         {value}
       </div>
       <div className="text-sm md:text-base text-[#6B6B6B]" style={fontBody}>

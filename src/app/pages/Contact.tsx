@@ -3,7 +3,17 @@ import { MapPin, Phone, Mail, Send, Clock, Bus } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { PageTransition } from '../components/PageTransition';
-import { PageHero, SectionEyebrow, fontBody, fontHeading, sectionPad } from '../components/layout/PageSections';
+import {
+  PageHero,
+  SectionEyebrow,
+  fontBody,
+  fontHeading,
+  sectionPad,
+  pageContainer,
+  sectionGap,
+  sectionHeaderMb,
+  headingSection,
+} from '../components/layout/PageSections';
 import { siteImages, pageHeroImages } from '../config/images';
 import { ORGANIZATION } from '../config/organization';
 import { GoogleMapEmbed } from '../components/GoogleMapEmbed';
@@ -34,12 +44,12 @@ export function Contact() {
         />
 
         <section className={`bg-[#F9F8F6] ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className={pageContainer}>
+            <div className={`grid grid-cols-1 lg:grid-cols-2 ${sectionGap}`}>
               <div>
                 <AnimatedSection>
                   <SectionEyebrow>Nous joindre</SectionEyebrow>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#2C2C2C]" style={fontHeading}>
+                  <h2 className={`${headingSection} mb-4 sm:mb-6`} style={fontHeading}>
                     Parlons ensemble
                   </h2>
                   <p className="text-lg text-[#6B6B6B] mb-8" style={fontBody}>
@@ -140,7 +150,7 @@ export function Contact() {
               </div>
 
               <div>
-                <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
+                <div className="bg-white rounded-2xl shadow-lg p-5 sm:p-8 md:p-10">
                   <h3 className="text-2xl font-bold mb-6 text-[#2C2C2C]" style={fontHeading}>
                     Envoyez-nous un message
                   </h3>
@@ -248,11 +258,11 @@ export function Contact() {
         </section>
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-12">
+          <div className={pageContainer}>
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-14 items-center ${sectionHeaderMb}`}>
               <div>
                 <SectionEyebrow>Localisation</SectionEyebrow>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
+                <h2 className={`${headingSection} mb-3 sm:mb-4`} style={fontHeading}>
                   Nous trouver
                 </h2>
                 <p className="text-[#6B6B6B] mb-4" style={fontBody}>

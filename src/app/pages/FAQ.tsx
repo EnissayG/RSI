@@ -4,7 +4,17 @@ import { ChevronDown, HelpCircle, Phone, Mail } from 'lucide-react';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { PageTransition } from '../components/PageTransition';
 import { Card } from '../components/ui/card';
-import { PageHero, ContentImage, SectionEyebrow, fontBody, sectionPad } from '../components/layout/PageSections';
+import {
+  PageHero,
+  ContentImage,
+  SectionEyebrow,
+  fontBody,
+  fontHeading,
+  sectionPad,
+  pageContainer,
+  sectionHeaderMb,
+  headingSection,
+} from '../components/layout/PageSections';
 import { siteImages, pageHeroImages } from '../config/images';
 import { ORGANIZATION } from '../config/organization';
 
@@ -168,7 +178,7 @@ export function FAQ() {
         />
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className={`${pageContainer} grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center`}>
             <ContentImage src={siteImages.faqAccompagnement} alt="Vie à RSI Propulsion" />
             <div>
               <SectionEyebrow>À propos</SectionEyebrow>
@@ -180,10 +190,10 @@ export function FAQ() {
           </div>
         </section>
 
-        <section className="py-20 bg-[#F9F8F6]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className={`${sectionPad} bg-[#F9F8F6]`}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
             {faqCategories.map((category, catIndex) => (
-              <div key={category.category} className="mb-12 last:mb-0">
+              <div key={category.category} className="mb-8 sm:mb-10 md:mb-12 last:mb-0">
                 <AnimatedSection>
                   <div className="flex items-center gap-3 mb-6">
                     <div
@@ -214,7 +224,7 @@ export function FAQ() {
                       >
                         <Card className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
                           <button
-                            className="w-full text-left p-6 flex items-start justify-between gap-4"
+                            className="w-full text-left p-4 sm:p-6 flex items-start justify-between gap-3 sm:gap-4"
                             onClick={() => setOpenIndex(isOpen ? null : globalIndex)}
                           >
                             <div className="flex-1">
@@ -247,7 +257,7 @@ export function FAQ() {
                                 transition={{ duration: 0.3 }}
                                 className="overflow-hidden"
                               >
-                                <div className="px-6 pb-6">
+                                <div className="px-4 sm:px-6 pb-4 sm:pb-6">
                                   <p
                                     className="text-base text-[#6B6B6B] leading-relaxed"
                                     style={{ fontFamily: 'var(--font-body)', lineHeight: 1.7 }}
@@ -269,15 +279,12 @@ export function FAQ() {
         </section>
 
         {/* Contact CTA Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className={`${sectionPad} bg-white`}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <AnimatedSection>
-              <Card className="bg-gradient-to-br from-[#F9F8F6] to-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
-                <HelpCircle className="w-16 h-16 text-[#E8621A] mx-auto mb-6" />
-                <h2
-                  className="text-3xl md:text-4xl font-bold mb-4 text-[#2C2C2C]"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                >
+              <Card className="bg-gradient-to-br from-[#F9F8F6] to-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-center">
+                <HelpCircle className="w-12 h-12 sm:w-16 sm:h-16 text-[#E8621A] mx-auto mb-4 sm:mb-6" />
+                <h2 className={`${headingSection} mb-3 sm:mb-4`} style={fontHeading}>
                   Vous ne trouvez pas votre réponse ?
                 </h2>
                 <p

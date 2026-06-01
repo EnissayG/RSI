@@ -3,7 +3,15 @@ import { motion } from 'motion/react';
 import { Card } from '../components/ui/card';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { PageTransition } from '../components/PageTransition';
-import { PageHero, ContentImage, fontBody, sectionPad } from '../components/layout/PageSections';
+import {
+  PageHero,
+  ContentImage,
+  fontBody,
+  fontHeading,
+  sectionPad,
+  sectionHeaderMb,
+  headingSection,
+} from '../components/layout/PageSections';
 import { siteImages, pageHeroImages } from '../config/images';
 
 export function PrivacyPolicy() {
@@ -18,9 +26,11 @@ Lorsque vous visitez ce site, seule l'adresse IP de votre appareil est relevée 
       title: 'Fichiers journaux et témoins (cookies)',
       content: `Lors de votre visite, des données techniques peuvent être enregistrées dans les fichiers journaux du serveur (adresse IP, type d'appareil, pages consultées, date et heure de connexion). Ces données servent à assurer la sécurité et le bon fonctionnement du site.
 
-Un bandeau vous permet d'accepter ou de refuser l'enregistrement de votre choix dans le stockage local de votre navigateur (clé « rsi-cookie-consent »). Ce choix est conservé pour ne pas vous redemander à chaque visite.
+RSI Propulsion n'installe pas de témoins publicitaires ni d'outils d'analyse (Google Analytics, etc.) sur ce site. Un avis en bas de page peut mémoriser que vous l'avez lu dans le stockage local de votre navigateur (clé « rsi-privacy-notice-dismissed »), sans autre suivi.
 
-RSI Propulsion n'utilise pas de témoins publicitaires ni de profilage à des fins commerciales. Si des outils de mesure d'audience venaient à être ajoutés, ils ne seraient activés qu'avec votre consentement explicite.`,
+Sur la page Contact, la carte Google Maps n'est chargée que si vous cliquez sur « Afficher la carte ». Google peut alors déposer des témoins tiers selon sa propre politique. Vous pouvez aussi ouvrir notre adresse directement dans Google Maps via le lien fourni.
+
+Si des outils de mesure d'audience venaient à être ajoutés, ils ne seraient activés qu'avec votre consentement explicite.`,
     },
     {
       title: "Formulaire de contact et d'admission",
@@ -52,10 +62,10 @@ Vous pouvez également vider le cache et supprimer les cookies de votre navigate
 
         <section className={sectionPad}>
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 max-w-2xl mx-auto">
+            <div className={`${sectionHeaderMb} max-w-2xl mx-auto`}>
               <ContentImage src={siteImages.confidentialite} alt="Protection des renseignements personnels" />
             </div>
-            <Card className="bg-[#F9F8F6] rounded-2xl shadow-lg p-8 md:p-10 mb-12">
+            <Card className="bg-[#F9F8F6] rounded-2xl shadow-lg p-5 sm:p-8 md:p-10 mb-8 sm:mb-12">
               <p
                 className="text-base text-[#6B6B6B]"
                 style={{ fontFamily: 'var(--font-body)', lineHeight: 1.8 }}
@@ -74,11 +84,8 @@ Vous pouvez également vider le cache et supprimer les cookies de votre navigate
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
                 >
-                  <Card className="bg-[#F9F8F6] rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 md:p-10">
-                    <h2
-                      className="text-2xl md:text-3xl font-bold text-[#2C2C2C] mb-6"
-                      style={{ fontFamily: 'var(--font-heading)' }}
-                    >
+                  <Card className="bg-[#F9F8F6] rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-5 sm:p-8 md:p-10">
+                    <h2 className={`${headingSection} mb-4 sm:mb-6`} style={fontHeading}>
                       {section.title}
                     </h2>
                     <div
@@ -94,15 +101,12 @@ Vous pouvez également vider le cache et supprimer les cookies de votre navigate
           </div>
         </section>
 
-        <section className="bg-[#F9F8F6] py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className={`bg-[#F9F8F6] ${sectionPad}`}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <AnimatedSection>
-              <Card className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-                <div className="text-center mb-8">
-                  <h2
-                    className="text-3xl md:text-4xl font-bold mb-4 text-[#2C2C2C]"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                  >
+              <Card className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-12">
+                <div className="text-center mb-6 sm:mb-8">
+                  <h2 className={`${headingSection} mb-3 sm:mb-4`} style={fontHeading}>
                     Responsable de la protection des renseignements personnels
                   </h2>
                 </div>

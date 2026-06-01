@@ -11,6 +11,9 @@ import {
   fontHeading,
   fontBody,
   sectionPad,
+  pageContainer,
+  sectionHeaderMb,
+  headingSection,
 } from '../components/layout/PageSections';
 import { DOCUMENTS } from '../config/documents';
 import { siteImages, pageHeroImages } from '../config/images';
@@ -56,14 +59,14 @@ function CriteriaBlock({
       className={`bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden ${className}`}
     >
       <div
-        className="px-6 md:px-8 py-5 border-b border-gray-100 border-l-4"
+        className="px-4 sm:px-6 md:px-8 py-4 sm:py-5 border-b border-gray-100 border-l-4"
         style={{ borderLeftColor: color }}
       >
         <h3 className="text-xl font-bold text-[#2C2C2C]" style={fontHeading}>
           {title}
         </h3>
       </div>
-      <div className="px-6 md:px-8 py-7 md:py-8">{children}</div>
+      <div className="px-4 sm:px-6 md:px-8 py-5 sm:py-7 md:py-8">{children}</div>
     </section>
   );
 }
@@ -86,8 +89,8 @@ export function Criteria() {
         />
 
         <section className={`bg-[#F9F8F6] ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="text-center mb-10 md:mb-12 max-w-3xl mx-auto">
+          <div className={pageContainer}>
+            <div className={`text-center ${sectionHeaderMb} max-w-3xl mx-auto`}>
               <SectionEyebrow>Documents officiels</SectionEyebrow>
               <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
                 Télécharger les PDF
@@ -120,9 +123,9 @@ export function Criteria() {
         </section>
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6 space-y-14 md:space-y-16">
+          <div className={`${pageContainer} space-y-10 sm:space-y-14 md:space-y-16`}>
             {/* Introduction admission */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-start`}>
               <div className="space-y-8">
                 <div>
                   <SectionEyebrow>Admission</SectionEyebrow>
@@ -269,8 +272,8 @@ export function Criteria() {
 
         <SectionRule color="#E8621A" />
 
-        <section className="bg-[#E8621A] py-16 md:py-20 text-white">
-          <div className="max-w-[1200px] mx-auto px-6 text-center">
+        <section className="bg-[#E8621A] py-12 sm:py-16 md:py-20 text-white">
+          <div className={`${pageContainer} text-center`}>
             <h2 className="text-3xl md:text-4xl font-bold mb-5" style={fontHeading}>
               Prêt à soumettre votre demande ?
             </h2>

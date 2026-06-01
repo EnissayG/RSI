@@ -10,6 +10,9 @@ import {
   fontHeading,
   fontBody,
   sectionPad,
+  pageContainer,
+  sectionGap,
+  sectionHeaderMb,
 } from '../components/layout/PageSections';
 import { siteImages, pageHeroImages } from '../config/images';
 import { ORGANIZATION } from '../config/organization';
@@ -66,7 +69,7 @@ function JobBlock({
 }) {
   return (
     <article className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-      <div className="px-6 md:px-8 py-5 border-b border-gray-100 border-l-4" style={{ borderLeftColor: accent }}>
+      <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-5 border-b border-gray-100 border-l-4" style={{ borderLeftColor: accent }}>
         <div className="flex flex-wrap items-center gap-3 mb-2">
           <span
             className="text-xs font-bold uppercase tracking-wider text-white px-3 py-1 rounded-full"
@@ -82,7 +85,7 @@ function JobBlock({
           {title}
         </h3>
       </div>
-      <div className="px-6 md:px-8 py-7 md:py-8 space-y-6">
+      <div className="px-4 sm:px-6 md:px-8 py-5 sm:py-7 md:py-8 space-y-5 sm:space-y-6">
         <p className="text-[#6B6B6B]" style={fontBody}>
           {description}
         </p>
@@ -212,8 +215,8 @@ export function Careers() {
         />
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16 md:mb-20">
+          <div className={pageContainer}>
+            <div className={`grid grid-cols-1 lg:grid-cols-2 ${sectionGap} items-center mb-10 sm:mb-14 md:mb-20`}>
               <div>
                 <SectionEyebrow>Pourquoi RSI Propulsion</SectionEyebrow>
                 <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-5" style={fontHeading}>
@@ -262,7 +265,7 @@ export function Careers() {
         <SectionRule color="#8AAC2A" />
 
         <section className={`bg-[#F9F8F6] ${sectionPad}`}>
-          <div className="max-w-[900px] mx-auto px-6 space-y-10 md:space-y-12">
+          <div className="max-w-[900px] mx-auto px-4 sm:px-6 space-y-8 sm:space-y-10 md:space-y-12">
             <div className="text-center max-w-2xl mx-auto">
               <SectionEyebrow>Offres d'emploi</SectionEyebrow>
               <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
@@ -290,8 +293,8 @@ export function Careers() {
         </section>
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="text-center mb-12 max-w-2xl mx-auto">
+          <div className={pageContainer}>
+            <div className={`text-center ${sectionHeaderMb} max-w-2xl mx-auto`}>
               <SectionEyebrow>Nous joindre</SectionEyebrow>
               <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
                 Venez nous rencontrer
@@ -338,7 +341,7 @@ export function Careers() {
         </section>
 
         <section className={`bg-[#F9F8F6] ${sectionPad}`}>
-          <div className="max-w-[720px] mx-auto px-6">
+          <div className="max-w-[720px] mx-auto px-4 sm:px-6">
             <div className="text-center mb-10">
               <SectionEyebrow>Candidature</SectionEyebrow>
               <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
@@ -350,7 +353,7 @@ export function Careers() {
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10 border border-gray-100">
+            <div className="bg-white rounded-2xl shadow-lg p-5 sm:p-8 md:p-10 border border-gray-100">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>

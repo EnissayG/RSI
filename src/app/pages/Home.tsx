@@ -24,6 +24,12 @@ import {
   fontHeading,
   fontBody,
   sectionPad,
+  pageContainer,
+  pageContainerWide,
+  sectionGap,
+  sectionGapTight,
+  sectionHeaderMb,
+  headingSection,
 } from '../components/layout/PageSections';
 import { siteImages } from '../config/images';
 import { ORGANIZATION } from '../config/organization';
@@ -124,11 +130,11 @@ export function Home() {
     <PageTransition>
       <div className="min-h-screen bg-white">
         {/* Hero, contenu à gauche, stats en barre en bas */}
-        <section className="relative min-h-screen flex flex-col">
+        <section className="relative min-h-[88dvh] sm:min-h-screen flex flex-col">
           <HeroCarousel />
 
-          <div className="relative z-10 flex-1 flex items-center pt-28 pb-8">
-            <div className="w-full max-w-[1800px] mx-auto px-8 sm:px-12 lg:px-20">
+          <div className="relative z-10 flex-1 flex items-center pt-24 sm:pt-28 pb-6 sm:pb-8">
+            <div className={`w-full ${pageContainerWide}`}>
               <div className="max-w-2xl lg:max-w-3xl text-left">
                 <motion.p
                   className="text-[#E8621A] uppercase tracking-[0.15em] text-xs font-semibold mb-5"
@@ -140,7 +146,7 @@ export function Home() {
                   Hochelaga-Maisonneuve · Montréal
                 </motion.p>
                 <motion.h1
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-[1.1]"
+                  className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 text-white leading-[1.1]"
                   style={fontHeading}
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -149,7 +155,7 @@ export function Home() {
                   Des logements abordables et adaptés
                 </motion.h1>
                 <motion.p
-                  className="text-lg sm:text-xl md:text-2xl text-white/95 mb-10 max-w-xl leading-relaxed"
+                  className="text-base sm:text-xl md:text-2xl text-white/95 mb-8 sm:mb-10 max-w-xl leading-relaxed"
                   style={fontBody}
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -180,8 +186,8 @@ export function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.45 }}
           >
-            <div className="max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-20 py-10 md:py-12">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-0">
+            <div className={`${pageContainer} py-8 sm:py-10 md:py-12`}>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0">
                 {heroStats.map((stat, index) => (
                   <div
                     key={stat.label}
@@ -225,10 +231,10 @@ export function Home() {
         <SectionRule />
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="text-center mb-12 max-w-3xl mx-auto">
+          <div className={pageContainer}>
+            <div className={`text-center ${sectionHeaderMb} max-w-3xl mx-auto`}>
               <SectionEyebrow>RSI Propulsion en bref</SectionEyebrow>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+              <h2 className={`${headingSection} mb-4 sm:mb-6`} style={fontHeading}>
                 {ORGANIZATION.legalName}
               </h2>
               <p className="text-[#6B6B6B] mb-4" style={fontBody}>
@@ -243,11 +249,11 @@ export function Home() {
         </section>
 
         <section className={`bg-[#F9F8F6] ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className={pageContainer}>
+            <div className={`grid grid-cols-1 lg:grid-cols-2 ${sectionGap} items-start`}>
               <div>
                 <SectionEyebrow>Services intégrés</SectionEyebrow>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+                <h2 className={`${headingSection} mb-4 sm:mb-6`} style={fontHeading}>
                   Plus qu'un logement : un accompagnement complet
                 </h2>
                 <p className="text-[#6B6B6B] mb-6" style={fontBody}>
@@ -287,18 +293,18 @@ export function Home() {
         <SectionRule />
 
         {/* Mission */}
-        <section className="bg-[#F9F8F6]">
-          <div className={`max-w-[1200px] mx-auto px-6 ${sectionPad}`}>
-            <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+        <section className={`bg-[#F9F8F6] ${sectionPad}`}>
+          <div className={pageContainer}>
+            <div className="text-center mb-8 md:mb-12 lg:mb-16 max-w-3xl mx-auto">
               <SectionEyebrow>Notre raison d'être</SectionEyebrow>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#2C2C2C]" style={fontHeading}>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#2C2C2C]" style={fontHeading}>
                 Un milieu de vie qui fait la différence
               </h2>
               <p className="mt-5 text-[#6B6B6B]" style={fontBody}>
                 {ORGANIZATION.description}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8 lg:gap-10 items-stretch">
               {missionCards.map((card, i) => (
                 <article
                   key={card.title}
@@ -307,9 +313,9 @@ export function Home() {
                   <img
                     src={[siteImages.missionChezSoi, siteImages.missionServices, siteImages.missionVieQuartier][i]}
                     alt={card.title}
-                    className="w-full h-44 object-cover shrink-0"
+                    className="w-full h-36 sm:h-44 object-cover shrink-0"
                   />
-                  <div className="flex flex-col flex-1 p-8 pt-7">
+                  <div className="flex flex-col flex-1 p-5 sm:p-8 pt-6 sm:pt-7">
                     <div className="flex items-center gap-3 mb-4">
                       <span
                         className="text-xs font-bold uppercase tracking-widest tabular-nums"
@@ -330,10 +336,10 @@ export function Home() {
               ))}
             </div>
           </div>
-          <div className="mt-16 md:mt-20 lg:mt-24">
-            <ColorBand bg="#E8621A" height="min-h-[140px] py-12 md:py-14">
+          <div className="mt-10 sm:mt-16 md:mt-20 lg:mt-24">
+            <ColorBand bg="#E8621A" height="min-h-0 py-10 sm:py-12 md:py-14">
               <p
-                className="text-white text-center text-xl md:text-2xl max-w-4xl italic px-6"
+                className="text-white text-center text-lg sm:text-xl md:text-2xl max-w-4xl italic px-4 sm:px-6"
                 style={{ ...fontHeading, lineHeight: 1.55 }}
               >
                 « Offrir un milieu de vie normalisant à des personnes qui méritent un chez-soi digne, adapté et
@@ -344,11 +350,11 @@ export function Home() {
         </section>
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className={pageContainer}>
+            <div className={`grid grid-cols-1 lg:grid-cols-2 ${sectionGap} items-center`}>
               <div>
                 <SectionEyebrow>Réseau ÉquiToît</SectionEyebrow>
-                <h2 className="text-3xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+                <h2 className={`${headingSection} mb-4 sm:mb-6`} style={fontHeading}>
                   Une seule demande pour quatre ressources
                 </h2>
                 <p className="text-[#6B6B6B] mb-6" style={fontBody}>
@@ -367,11 +373,11 @@ export function Home() {
                   Voir les critères complets →
                 </Link>
               </div>
-              <div className="rounded-2xl overflow-hidden shadow-xl h-[320px]">
+              <div className="rounded-2xl overflow-hidden shadow-xl h-[220px] sm:h-[280px] md:h-[320px]">
                 <img src={siteImages.equitoitReseau} alt="Vie en communauté RSI" className="w-full h-full object-cover" />
               </div>
             </div>
-            <div className="mt-14 bg-[#F9F8F6] rounded-2xl p-8 md:p-10 border-l-4 border-[#8AAC2A]">
+            <div className="mt-8 sm:mt-12 md:mt-14 bg-[#F9F8F6] rounded-2xl p-5 sm:p-8 md:p-10 border-l-4 border-[#8AAC2A]">
               <h3 className="text-xl font-bold text-[#2C2C2C] mb-3" style={fontHeading}>
                 Journal des locataires
               </h3>
@@ -386,10 +392,10 @@ export function Home() {
         <SectionRule />
 
         <section className={`bg-[#F9F8F6] ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="text-center mb-12 max-w-2xl mx-auto">
+          <div className={pageContainer}>
+            <div className={`text-center ${sectionHeaderMb} max-w-2xl mx-auto`}>
               <SectionEyebrow>Admission</SectionEyebrow>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
+              <h2 className={`${headingSection} mb-3 sm:mb-4`} style={fontHeading}>
                 Comment déposer une demande ?
               </h2>
               <p className="text-[#6B6B6B]" style={fontBody}>
@@ -397,9 +403,9 @@ export function Home() {
                 ÉquiToît.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {admissionSteps.map((item) => (
-                <HoverCard key={item.step} className="p-6 md:p-8 h-full flex flex-col border-t-4 border-[#E8621A]">
+                <HoverCard key={item.step} className="p-5 sm:p-6 md:p-8 h-full flex flex-col border-t-4 border-[#E8621A]">
                   <span className="text-3xl font-bold text-[#E8621A]/30 mb-3" style={fontHeading}>
                     {item.step}
                   </span>
@@ -422,13 +428,13 @@ export function Home() {
 
         {/* Services */}
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
+          <div className={pageContainer}>
             <SectionEyebrow>Ce que nous offrons</SectionEyebrow>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#2C2C2C] mb-12" style={fontHeading}>
+            <h2 className={`text-2xl sm:text-4xl md:text-5xl font-bold text-[#2C2C2C] mb-8 sm:mb-12`} style={fontHeading}>
               Un accompagnement complet, 24h/24
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-              <div className="rounded-2xl overflow-hidden shadow-xl h-[420px]">
+            <div className={`grid grid-cols-1 lg:grid-cols-2 ${sectionGapTight} items-center`}>
+              <div className="rounded-2xl overflow-hidden shadow-xl h-[220px] sm:h-[300px] md:h-[380px] lg:h-[420px]">
                 <img
                   src={siteImages.accompagnement24h}
                   alt="Accompagnement et vie communautaire"
@@ -508,12 +514,12 @@ export function Home() {
           </div>
         </section>
 
-        <section className="relative bg-[#F9F8F6] pb-20 md:pb-24">
-          <ColorBand bg="#E8621A" height="h-[100px]" className="mb-0" />
-          <div className="max-w-[1200px] mx-auto px-6 -mt-[40px] relative z-10">
-            <HoverCard className="p-10 md:p-14 border-t-4 border-[#E8621A]">
+        <section className={`relative bg-[#F9F8F6] ${sectionPad}`}>
+          <ColorBand bg="#E8621A" height="min-h-0 h-16 sm:h-[100px]" className="mb-0" />
+          <div className={`${pageContainer} -mt-8 sm:-mt-[40px] relative z-10`}>
+            <HoverCard className="p-6 sm:p-10 md:p-14 border-t-4 border-[#E8621A]">
               <SectionEyebrow>Admission</SectionEyebrow>
-              <h2 className="text-4xl font-bold text-[#2C2C2C] mb-10" style={fontHeading}>
+              <h2 className={`${headingSection} mb-6 sm:mb-10`} style={fontHeading}>
                 Faites votre demande de logement
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 pb-10 border-b border-gray-200">
@@ -549,10 +555,10 @@ export function Home() {
         <SectionRule color="#8AAC2A" />
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6 mb-14">
-            <div className="text-center mb-10">
+          <div className={`${pageContainer} mb-10 md:mb-14`}>
+            <div className="text-center mb-8 sm:mb-10">
               <SectionEyebrow>Explorer le site</SectionEyebrow>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C]" style={fontHeading}>
+              <h2 className={headingSection} style={fontHeading}>
                 Aller plus loin
               </h2>
             </div>
@@ -561,7 +567,7 @@ export function Home() {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="bg-[#F9F8F6] rounded-2xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all border border-gray-100 group"
+                  className="bg-[#F9F8F6] rounded-2xl p-5 sm:p-6 hover:shadow-md hover:-translate-y-0.5 transition-all border border-gray-100 group"
                 >
                   <h3 className="text-lg font-bold text-[#2C2C2C] mb-2 group-hover:text-[#E8621A] transition-colors" style={fontHeading}>
                     {link.title}
@@ -598,10 +604,10 @@ export function Home() {
 
         {/* FAQ */}
         <section className={`bg-[#F9F8F6] ${sectionPad}`}>
-          <div className="max-w-[800px] mx-auto px-6">
-            <div className="text-center mb-12">
+          <div className="max-w-[800px] mx-auto px-4 sm:px-6">
+            <div className={`text-center ${sectionHeaderMb}`}>
               <SectionEyebrow>Questions fréquentes</SectionEyebrow>
-              <h2 className="text-4xl font-bold text-[#2C2C2C]" style={fontHeading}>
+              <h2 className={headingSection} style={fontHeading}>
                 Vous avez des questions ?
               </h2>
             </div>
@@ -625,15 +631,15 @@ export function Home() {
           </div>
         </section>
 
-        <section className="bg-[#E8621A] py-20 md:py-24 text-white text-center">
-          <div className="max-w-[900px] mx-auto px-6">
+        <section className={`bg-[#E8621A] ${sectionPad} text-white text-center`}>
+          <div className="max-w-[900px] mx-auto px-4 sm:px-6">
             <SectionEyebrow>
               <span className="text-white/90">Soutenez notre mission</span>
             </SectionEyebrow>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={fontHeading}>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6" style={fontHeading}>
               Votre don change des vies
             </h2>
-            <p className="text-lg mb-10 opacity-95" style={fontBody}>
+            <p className="text-base sm:text-lg mb-8 sm:mb-10 opacity-95" style={fontBody}>
               Chaque contribution nous aide à maintenir des logements dignes, des services quotidiens et une vie
               communautaire enrichissante pour nos locataires.
             </p>
@@ -652,11 +658,11 @@ export function Home() {
         </section>
 
         <section className={`bg-white ${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className={pageContainer}>
+            <div className={`grid grid-cols-1 lg:grid-cols-2 ${sectionGap} items-center`}>
               <div>
                 <SectionEyebrow>Contact</SectionEyebrow>
-                <h2 className="text-4xl font-bold text-[#2C2C2C] mb-6" style={fontHeading}>
+                <h2 className={`${headingSection} mb-4 sm:mb-6`} style={fontHeading}>
                   Prêt à faire le premier pas ?
                 </h2>
                 <p className="text-[#6B6B6B] mb-4" style={fontBody}>
@@ -681,7 +687,7 @@ export function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <a
                   href="tel:5142512525"
-                  className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all border-l-4 border-[#E8621A] flex items-center gap-4"
+                  className="bg-white p-5 sm:p-8 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all border-l-4 border-[#E8621A] flex items-center gap-3 sm:gap-4"
                 >
                   <div className="w-14 h-14 rounded-full bg-[#E8621A] flex items-center justify-center">
                     <Phone className="w-7 h-7 text-white" />

@@ -11,6 +11,9 @@ import {
   fontHeading,
   fontBody,
   sectionPad,
+  pageContainer,
+  sectionHeaderMb,
+  headingSection,
 } from '../components/layout/PageSections';
 import { pageHeroImages } from '../config/images';
 
@@ -146,8 +149,8 @@ export function Team() {
 
         {/* Directeur général, bandeau éditorial */}
         <section className="bg-white">
-          <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className={`${pageContainer} py-12 sm:py-16 md:py-20`}>
+            <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-16 items-center`}>
               <motion.div
                 className="lg:col-span-5 flex justify-center"
                 initial={{ opacity: 0, scale: 0.96 }}
@@ -201,10 +204,10 @@ export function Team() {
 
         {/* Conseil d'administration */}
         <section className={`${sectionPad}`}>
-          <div className="max-w-[1200px] mx-auto px-6">
+          <div className={pageContainer}>
             <div className="text-center mb-14">
               <SectionEyebrow>Gouvernance</SectionEyebrow>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C]" style={fontHeading}>
+              <h2 className={headingSection} style={fontHeading}>
                 Les membres du C.A.
               </h2>
             </div>
@@ -235,10 +238,10 @@ export function Team() {
           </div>
         </section>
 
-        <section className="bg-white py-20 text-center border-t border-gray-100">
+        <section className={`bg-white ${sectionPad} text-center border-t border-gray-100`}>
           <div className="max-w-[600px] mx-auto px-6">
             <SectionEyebrow>Rejoignez-nous</SectionEyebrow>
-            <h2 className="text-3xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
+            <h2 className={`${headingSection} mb-3 sm:mb-4`} style={fontHeading}>
               Travailler chez RSI Propulsion
             </h2>
             <p className="text-[#6B6B6B] mb-8" style={fontBody}>

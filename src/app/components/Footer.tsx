@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { ScrollLink } from './ScrollLink';
 import logoRsi from '../../imports/logo_rsi_propulsion.png';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { ORGANIZATION } from '../config/organization';
@@ -6,8 +6,8 @@ import { ORGANIZATION } from '../config/organization';
 export function Footer() {
   return (
     <footer className="bg-[#2C2C2C] text-white">
-      <div className="max-w-[1800px] mx-auto px-8 sm:px-12 lg:px-20 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 sm:py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-10 md:mb-12">
           <div className="lg:col-span-1">
             <div className="mb-4">
               <img src={logoRsi} alt="RSI Propulsion" className="h-12 w-auto brightness-0 invert" />
@@ -27,24 +27,24 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm" style={{ fontFamily: 'var(--font-body)' }}>
               <li>
-                <Link to="/equipe" className="text-gray-300 hover:text-[#E8621A] transition-colors">
+                <ScrollLink to="/equipe" className="text-gray-300 hover:text-[#E8621A] transition-colors">
                   Notre équipe
-                </Link>
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/historique" className="text-gray-300 hover:text-[#E8621A] transition-colors">
+                <ScrollLink to="/historique" className="text-gray-300 hover:text-[#E8621A] transition-colors">
                   Notre histoire
-                </Link>
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/services" className="text-gray-300 hover:text-[#E8621A] transition-colors">
+                <ScrollLink to="/services" className="text-gray-300 hover:text-[#E8621A] transition-colors">
                   Nos services
-                </Link>
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/carriere" className="text-gray-300 hover:text-[#E8621A] transition-colors">
+                <ScrollLink to="/carriere" className="text-gray-300 hover:text-[#E8621A] transition-colors">
                   Travailler avec nous
-                </Link>
+                </ScrollLink>
               </li>
             </ul>
           </div>
@@ -55,29 +55,29 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm" style={{ fontFamily: 'var(--font-body)' }}>
               <li>
-                <Link to="/criteres" className="text-gray-300 hover:text-[#E8621A] transition-colors">
+                <ScrollLink to="/criteres" className="text-gray-300 hover:text-[#E8621A] transition-colors">
                   Critères d'admission
-                </Link>
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/admission" className="text-gray-300 hover:text-[#E8621A] transition-colors">
+                <ScrollLink to="/admission" className="text-gray-300 hover:text-[#E8621A] transition-colors">
                   Formulaire d'inscription
-                </Link>
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/faq" className="text-gray-300 hover:text-[#E8621A] transition-colors">
+                <ScrollLink to="/faq" className="text-gray-300 hover:text-[#E8621A] transition-colors">
                   Questions fréquentes
-                </Link>
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/faire-un-don" className="text-gray-300 hover:text-[#E8621A] transition-colors">
+                <ScrollLink to="/faire-un-don" className="text-gray-300 hover:text-[#E8621A] transition-colors">
                   Faire un don
-                </Link>
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/politique-confidentialite" className="text-gray-300 hover:text-[#E8621A] transition-colors">
+                <ScrollLink to="/politique-confidentialite" className="text-gray-300 hover:text-[#E8621A] transition-colors">
                   Confidentialité
-                </Link>
+                </ScrollLink>
               </li>
             </ul>
           </div>
@@ -118,9 +118,9 @@ export function Footer() {
               © {new Date().getFullYear()} {ORGANIZATION.shortName}. Tous droits réservés.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4" style={{ fontFamily: 'var(--font-body)' }}>
-              <Link to="/contact" className="hover:text-[#E8621A] transition-colors">
+              <ScrollLink to="/contact" className="hover:text-[#E8621A] transition-colors">
                 Nous joindre
-              </Link>
+              </ScrollLink>
               <span className="text-gray-600 hidden sm:inline">·</span>
               <a
                 href={ORGANIZATION.resource211}

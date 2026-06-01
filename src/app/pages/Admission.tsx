@@ -11,6 +11,7 @@ import {
   SectionEyebrow,
   ContentImage,
   sectionPad,
+  sectionHeaderMb,
 } from '../components/layout/PageSections';
 import { DOCUMENTS } from '../config/documents';
 import { siteImages, pageHeroImages } from '../config/images';
@@ -168,7 +169,7 @@ export function Admission() {
   if (submitted) {
     return (
       <PageTransition>
-        <div className="min-h-screen bg-white flex items-center justify-center px-6 py-32">
+        <div className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-6 py-20 sm:py-32">
           <motion.div
             className="max-w-xl text-center"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -237,7 +238,7 @@ export function Admission() {
             <div className="mb-10 max-w-lg mx-auto">
               <ContentImage src={siteImages.inscriptionAccueil} alt="Inscription RSI Propulsion" />
             </div>
-            <div className="text-center mb-12">
+            <div className={`text-center ${sectionHeaderMb}`}>
               <SectionEyebrow>En ligne</SectionEyebrow>
               <h2 className="text-3xl md:text-4xl font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
                 Formulaire de demande d'inscription
@@ -248,7 +249,7 @@ export function Admission() {
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10 border border-gray-100">
+            <div className="bg-white rounded-2xl shadow-lg p-5 sm:p-8 md:p-10 border border-gray-100">
               <form
                 name="admission-inscription"
                 method="POST"
@@ -256,7 +257,7 @@ export function Admission() {
                 netlify=""
                 netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
-                className="space-y-12"
+                className="space-y-8 sm:space-y-10 md:space-y-12"
               >
                 <input type="hidden" name="form-name" value="admission-inscription" />
                 <p className="hidden">

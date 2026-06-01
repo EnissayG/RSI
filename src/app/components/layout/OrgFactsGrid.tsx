@@ -12,11 +12,11 @@ const facts = [
 
 export function OrgFactsGrid({ className = '' }: { className?: string }) {
   return (
-    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 ${className}`}>
+    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 ${className}`}>
       {facts.map((fact) => (
         <div
           key={fact.title}
-          className="bg-[#F9F8F6] rounded-xl p-6 lg:p-7 border border-gray-100/80 hover:shadow-md transition-shadow"
+          className="bg-[#F9F8F6] rounded-xl p-5 sm:p-6 lg:p-7 border border-gray-100/80 hover:shadow-md transition-shadow"
           style={{ borderTopWidth: '4px', borderTopColor: fact.color, borderTopStyle: 'solid' }}
         >
           <h3 className="text-lg font-bold text-[#2C2C2C] mb-2" style={fontHeading}>
