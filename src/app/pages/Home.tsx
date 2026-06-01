@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import { Link } from 'react-router';
 import {
   Heart,
@@ -13,7 +14,7 @@ import {
 import { motion } from 'motion/react';
 import { Button } from '../components/ui/button';
 import { PageTransition } from '../components/PageTransition';
-import { HeroCarousel } from '../components/HeroCarousel';
+import { HeroCarousel, HeroCarouselDots } from '../components/HeroCarousel';
 import {
   SectionEyebrow,
   SectionRule,
@@ -58,14 +59,30 @@ const missionCards = [
   },
 ];
 
-const heroStats = [
-  { value: '15', label: 'Unités', hint: null },
+type HeroStat = {
+  value: string;
+  shortValue: string;
+  label: string;
+  shortLabel: string;
+  hint?: string;
+};
+
+const heroStats: HeroStat[] = [
+  { value: '15', shortValue: '15', label: 'Unités', shortLabel: 'Unités' },
   {
     value: 'AVQ & AVD',
+    shortValue: 'AVQ·AVD',
     label: 'Aide quotidienne & domestique',
-    hint: 'Hygiène, habillement, repas, ménage, offert par nos préposés sur place',
+    shortLabel: 'Aide quot. & dom.',
+    hint: 'Hygiène, habillement, repas, ménage',
   },
-  { value: 'Depuis 2011', label: 'À Montréal', hint: null },
+  {
+    value: 'Depuis 2011',
+    shortValue: '2011',
+    label: 'À Montréal',
+    shortLabel: 'Montréal',
+    hint: 'Hochelaga-Maisonneuve',
+  },
 ];
 
 const admissionSteps = [
@@ -126,14 +143,19 @@ const faqItems = [
 ];
 
 export function Home() {
+  const [heroSlide, setHeroSlide] = useState(0);
+  const handleHeroSlideChange = useCallback((index: number) => {
+    setHeroSlide(index);
+  }, []);
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-white">
         {/* Hero, contenu à gauche, stats en barre en bas */}
         <section className="relative min-h-[88dvh] sm:min-h-screen flex flex-col">
-          <HeroCarousel />
+          <HeroCarousel index={heroSlide} onIndexChange={handleHeroSlideChange} />
 
-          <div className="relative z-10 flex-1 flex items-center pt-24 sm:pt-28 pb-6 sm:pb-8">
+          <div className="relative z-10 flex-1 flex items-center pt-24 sm:pt-28 pb-4 sm:pb-6">
             <div className={`w-full ${pageContainerWide}`}>
               <div className="max-w-2xl lg:max-w-3xl text-left">
                 <motion.p
@@ -180,51 +202,46 @@ export function Home() {
             </div>
           </div>
 
-          <motion.div
-            className="relative z-10 w-full border-t border-white/20 bg-[#2C2C2C]/55 backdrop-blur-sm"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45 }}
-          >
-            <div className={`${pageContainer} py-8 sm:py-10 md:py-12`}>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0">
-                {heroStats.map((stat, index) => (
-                  <div
-                    key={stat.label}
-                    className={`flex flex-col items-center text-center px-4 ${
-                      index > 0 ? 'sm:border-l sm:border-white/20' : ''
-                    }`}
-                    title={stat.hint ?? undefined}
-                  >
-                    <span
-                      className={`font-bold text-white mb-2 leading-none ${
-                        stat.value === 'AVQ & AVD'
-                          ? 'text-3xl sm:text-4xl lg:text-5xl'
-                          : 'text-4xl sm:text-5xl lg:text-6xl'
-                      }`}
-                      style={fontHeading}
-                    >
-                      {stat.value}
-                    </span>
-                    <span
-                      className="text-xs sm:text-sm uppercase tracking-[0.18em] text-white/85 font-semibold"
-                      style={fontBody}
-                    >
-                      {stat.label}
-                    </span>
-                    {stat.hint && (
-                      <span
-                        className="mt-2 text-[11px] sm:text-xs text-white/60 normal-case tracking-normal max-w-[220px] leading-snug hidden sm:block"
-                        style={fontBody}
-                      >
-                        {stat.hint}
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
+          <div className="relative z-20 mt-auto w-full">
+            <div className={`${pageContainerWide} pb-2 sm:pb-3 pt-1`}>
+              <HeroCarouselDots index={heroSlide} onSelect={handleHeroSlideChange} />
             </div>
+
+          <motion.div
+            className="w-full border-t border-white/15 bg-[#2C2C2C]/80 backdrop-blur-md"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+          >
+            <ul
+              className={`${pageContainer} grid grid-cols-3 divide-x divide-white/15 py-3 sm:py-3.5 md:py-4 lg:py-5`}
+              aria-label="Faits clés RSI Propulsion"
+            >
+              {heroStats.map((stat) => (
+                <li
+                  key={stat.label}
+                  className="flex flex-col items-center justify-center text-center px-2 sm:px-4 min-w-0 gap-1 sm:gap-1.5"
+                  title={stat.hint}
+                >
+                  <span
+                    className="font-bold text-white leading-none tabular-nums text-xl sm:text-2xl md:text-3xl lg:text-[2rem]"
+                    style={fontHeading}
+                  >
+                    <span className="md:hidden">{stat.shortValue}</span>
+                    <span className="hidden md:inline">{stat.value}</span>
+                  </span>
+                  <span
+                    className="text-[10px] sm:text-[11px] md:text-xs uppercase tracking-[0.12em] sm:tracking-[0.14em] text-white/85 font-semibold leading-snug max-w-[6.5rem] sm:max-w-[9rem] md:max-w-none mx-auto"
+                    style={fontBody}
+                  >
+                    <span className="lg:hidden">{stat.shortLabel}</span>
+                    <span className="hidden lg:inline">{stat.label}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </motion.div>
+          </div>
 
         </section>
 
