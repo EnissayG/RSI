@@ -8,11 +8,11 @@ export const DOCUMENTS = {
   criteres: {
     file: publicUrl('documents/informations-criteres-selection.pdf'),
     title: 'Informations et critères de sélection',
-    description: 'Document officiel PDF, critères, coûts et services (réseau ÉquiToît).',
+    description: 'Document officiel PDF : critères, coûts et services.',
   },
   inscription: {
     file: publicUrl('documents/formulaire-inscription.pdf'),
     title: "Formulaire d'inscription",
-    description: 'Version PDF du formulaire (vous pouvez aussi remplir le formulaire en ligne).',
+    description: 'Formulaire papier à imprimer, remplir et retourner par courriel.',
   },
 } as const;

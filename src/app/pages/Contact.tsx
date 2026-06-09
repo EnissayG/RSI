@@ -54,9 +54,9 @@ export function Contact() {
                   </h2>
                   <p className="text-lg text-[#6B6B6B] mb-8" style={fontBody}>
                     Pour une demande d'admission, une visite des lieux, un emploi ou toute question sur la vie en
-                    résidence, contactez notre équipe. Les demandes d'admission se font aussi via le{' '}
+                    résidence, contactez notre équipe. Les demandes d'admission se font par{' '}
                     <a href="/admission" className="text-[#E8621A] font-semibold hover:underline">
-                      formulaire en ligne
+                      formulaire papier et courriel
                     </a>
                     .
                   </p>

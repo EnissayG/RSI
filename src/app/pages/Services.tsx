@@ -115,7 +115,7 @@ export function Services() {
           imageLeft={false}
           eyebrow="Activités de la vie quotidienne"
           title="Prendre soin de vous au quotidien"
-          body="Nos préposés aux bénéficiaires accompagnent chaque locataire dans les gestes essentiels du quotidien : l'hygiène personnelle, l'habillement, les transferts et les déplacements à l'intérieur du bâtiment. Chaque intervention est planifiée selon vos besoins et votre horaire."
+          body="Nos préposés aux bénéficiaires accompagnent chaque locataire dans les activités de la vie quotidienne (AVQ) : hygiène, habillement, transferts, etc. Chaque intervention est planifiée selon vos besoins et votre horaire."
           items={[
             "Aide à l'hygiène personnelle",
             "Aide à l'habillement",
@@ -154,8 +154,8 @@ export function Services() {
                   La salle communautaire, cœur de la résidence
                 </h2>
                 <p className="text-[#6B6B6B] max-w-3xl" style={fontBody}>
-                  RSI Propulsion dispose d'une salle communautaire animée par notre chef cuisinier. Les repas y sont
-                  servis avec service aux tables, créant un moment de partage quotidien apprécié par nos locataires.
+                  {ORGANIZATION.meals} La salle communautaire crée un moment de partage quotidien apprécié par nos
+                  locataires.
                 </p>
               </div>
               <ContentImage src={siteImages.repasCommunautaire} alt="Repas en salle communautaire" />
@@ -166,7 +166,7 @@ export function Services() {
                   Chef cuisinier
                 </h3>
                 <p className="text-[#6B6B6B]" style={fontBody}>
-                  Repas préparés et servis avec service dans la salle communautaire
+                  Tous les repas sont préparés par un chef cuisinier
                 </p>
               </HoverCard>
               <HoverCard className="p-6 sm:p-8 md:p-10 border-l-4 border-[#8AAC2A]">

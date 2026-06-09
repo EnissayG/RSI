@@ -2,11 +2,11 @@ import { ORGANIZATION } from '../../config/organization';
 import { fontBody, fontHeading } from './PageSections';
 
 const facts = [
-  { color: '#E8621A', title: '15 logements 3½', text: ORGANIZATION.unitType },
+  { color: '#E8621A', title: '15 logements 3½', text: ORGANIZATION.unitAdaptation },
   { color: '#D4A017', title: 'Quartier', text: ORGANIZATION.address.neighbourhood },
   { color: '#8AAC2A', title: 'Administration', text: ORGANIZATION.adminHours },
   { color: '#E8621A', title: 'Langues', text: ORGANIZATION.languages },
-  { color: '#D4A017', title: 'Clientèle', text: '18 à 59 ans, déficience physique' },
+  { color: '#D4A017', title: 'Clientèle', text: '18 à 59 ans, propulsion à mobilité réduite' },
   { color: '#8AAC2A', title: 'Services', text: 'AVQ et AVD, équipe présente 24 h/24, 7 j/7' },
 ];
 

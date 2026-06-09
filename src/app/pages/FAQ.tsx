@@ -33,7 +33,7 @@ export function FAQ() {
         },
         {
           question: "Comment faire une demande d'admission ?",
-          answer: `Consultez les critères sur notre site, puis complétez le formulaire en ligne ou le PDF. Une entrevue de sélection sera organisée. Téléphone : ${ORGANIZATION.phone}, ${ORGANIZATION.email}. Une seule demande suffit pour le réseau ÉquiToît (${ORGANIZATION.equitoitNetwork.join(', ')}).`,
+          answer: `Consultez les critères sur notre site, téléchargez le formulaire d'inscription (PDF), complétez-le et retournez-le par courriel à ${ORGANIZATION.email}. Une entrevue de sélection sera organisée. Téléphone : ${ORGANIZATION.phone}.`,
         },
         {
           question: 'Qui peut habiter à RSI Propulsion ?',
@@ -72,7 +72,7 @@ export function FAQ() {
         {
           question: 'Comment sont les appartements ?',
           answer:
-            "Chaque appartement 3½ comprend un salon, une cuisinette équipée, une chambre fermée et une salle de bain adaptée. Tous les logements sont entièrement accessibles et peuvent être adaptés davantage selon vos besoins spécifiques (barres d'appui, équipements spécialisés, etc.).",
+            "Chaque appartement 3½ comprend un salon, une cuisinette équipée et une chambre fermée. Les 15 logements sont adaptés aux besoins de chaque personne selon sa condition (barres d'appui, équipements spécialisés, aménagements, etc.).",
         },
         {
           question: 'Puis-je apporter mes propres meubles ?',
@@ -93,7 +93,7 @@ export function FAQ() {
         {
           question: 'Les repas sont-ils fournis ?',
           answer:
-            "Un chef cuisinier prépare les repas servis à la salle communautaire avec service aux tables. Des frais mensuels de nourriture s'appliquent. Vous disposez aussi d'une cuisinette dans votre appartement.",
+            "Tous les repas sont préparés par un chef cuisinier et servis à la salle communautaire avec service aux tables. Des frais mensuels de nourriture s'appliquent. Vous disposez aussi d'une cuisinette dans votre appartement.",
         },
         {
           question: 'Y a-t-il des activités sociales organisées ?',

@@ -17,6 +17,7 @@ import {
 } from '../components/layout/PageSections';
 import { PAYPAL_DONATE_URL } from '../config/links';
 import { siteImages, pageHeroImages } from '../config/images';
+import { ORGANIZATION } from '../config/organization';
 
 export function Donate() {
   const impactAreas = [
@@ -32,7 +33,7 @@ export function Donate() {
       color: '#D4A017',
       title: 'Vie quotidienne',
       description:
-        "Repas communautaires, aide AVQ et AVD, et présence de notre équipe 24 h/24, 7 j/7.",
+        `${ORGANIZATION.meals} ${ORGANIZATION.avq} Présence de notre équipe 24 h/24, 7 j/7.`,
     },
     {
       icon: HandHeart,

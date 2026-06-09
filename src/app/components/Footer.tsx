@@ -61,7 +61,7 @@ export function Footer() {
               </li>
               <li>
                 <ScrollLink to="/admission" className="text-gray-300 hover:text-[#E8621A] transition-colors">
-                  Formulaire d'inscription
+                  Demande d'inscription
                 </ScrollLink>
               </li>
               <li>

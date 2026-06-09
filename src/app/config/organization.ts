@@ -16,26 +16,27 @@ export const ORGANIZATION = {
   emailDg: 'dg@rsipropulsion.ca',
   charityNumber: '138775119RR0001',
   units: 15,
-  unitType: '3½ (salon, cuisinette, chambre fermée, salle de bain adaptée)',
+  unitType: '3½ (salon, cuisinette, chambre fermée)',
+  unitAdaptation:
+    '15 logements adaptés aux besoins de chaque personne selon sa condition (équipements, aménagements, barres d\'appui, etc.)',
   adminHours: 'Lundi au vendredi, 9 h 30 à 17 h 30',
   languages: 'Français et anglais',
   territory: 'Grand Montréal (demandes acceptées de partout au Québec)',
   clientele:
-    'Adultes de 18 à 59 ans présentant une déficience physique avec ou sans atteinte cognitive légère, capables de vivre en appartement avec soutien adapté.',
+    'Adultes de 18 à 59 ans en propulsion à mobilité réduite, présentant une déficience physique avec ou sans atteinte cognitive légère, capables de vivre en appartement avec un soutien adapté.',
+  avq:
+    'Aide aux activités de la vie quotidienne (AVQ) : hygiène, habillement, transferts, etc.',
+  avd: 'Aide aux activités de la vie domestique (AVD) : ménage, lessive, vaisselle, etc.',
+  meals:
+    'Tous les repas sont préparés par un chef cuisinier et servis à la salle communautaire avec service aux tables.',
   mission:
     "Offrir un milieu de vie inspirant pour des personnes vivant en situation de handicap, où chacun peut s'épanouir dans un environnement adapté, normalisant et chaleureux, un vrai « Chez-moi ».",
   description:
     "Gestion de 15 logements adaptés à Hochelaga-Maisonneuve, avec aide aux activités de la vie quotidienne (AVQ) et domestique (AVD), intégration communautaire et services 24 h/24, 7 j/7.",
-  equitoitNetwork: [
-    'RSI Propulsion',
-    'ÉquiToît NDG',
-    'Espace Bellechasse',
-    'Habitations Pignon sur Roues',
-  ],
   documentsAdmission: [
-    "Formulaire de demande d'inscription (en ligne ou PDF)",
+    "Formulaire de demande d'inscription (PDF, à retourner par courriel)",
     'OCCI (Outil de Cheminement Clinique Informatisé)',
-    "Formulaires d'évaluation requis par le réseau (selon la procédure en vigueur)",
+    "Formulaires d'évaluation requis (selon la procédure en vigueur)",
   ],
   mapEmbedUrl:
     'https://maps.google.com/maps?q=2075+Rue+Th%C3%A9odore,+Montr%C3%A9al,+QC+H1V+3C1&hl=fr&z=16&output=embed',

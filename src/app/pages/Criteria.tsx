@@ -96,7 +96,7 @@ export function Criteria() {
                 Télécharger les PDF
               </h2>
               <p className="text-[#6B6B6B] mb-8" style={fontBody}>
-                Consultez ou imprimez les documents. L'inscription en ligne se fait sur la page{' '}
+                Consultez ou imprimez les documents. Retournez le formulaire complété par courriel — voir la page{' '}
                 <Link to="/admission" className="text-[#E8621A] font-semibold hover:underline">
                   Inscription
                 </Link>
@@ -135,19 +135,6 @@ export function Criteria() {
                   <p className="text-[#6B6B6B]" style={fontBody}>
                     {ORGANIZATION.clientele} {ORGANIZATION.territory}
                   </p>
-                </div>
-
-                <div className="bg-[#F9F8F6] rounded-xl p-6 md:p-7 border border-gray-100">
-                  <h3 className="font-bold text-[#2C2C2C] mb-4" style={fontHeading}>
-                    Réseau ÉquiToît : une demande, quatre ressources
-                  </h3>
-                  <ul className="space-y-2">
-                    {ORGANIZATION.equitoitNetwork.map((name) => (
-                      <li key={name} className="text-[#6B6B6B] pl-4 border-l-2 border-[#E8621A]/40" style={fontBody}>
-                        {name}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -197,7 +184,7 @@ export function Criteria() {
                   <CriteriaList
                     title=""
                     items={[
-                      '15 unités de 3½ : salon et cuisinette (micro-ondes et mini-frigo), chambre fermée et salle de bain adaptée',
+                      '15 unités de 3½ : salon et cuisinette (micro-ondes et mini-frigo), chambre fermée — logements adaptés aux besoins de chaque personne selon sa condition',
                       'Bâtiment entièrement adapté et accessible',
                       'Équipements fournis par le CLSC selon les besoins du locataire',
                     ]}
@@ -223,15 +210,15 @@ export function Criteria() {
                 <CriteriaBlock title="Services inclus" color="#8AAC2A">
                   <div className="space-y-4 text-[#6B6B6B]" style={fontBody}>
                     <p>
-                      <strong className="text-[#2C2C2C]">AVQ :</strong> Oui (hygiène, habillement, transferts)
+                      <strong className="text-[#2C2C2C]">AVQ :</strong> Oui (hygiène, habillement, transferts, etc.)
                     </p>
                     <p>
                       <strong className="text-[#2C2C2C]">AVD :</strong> Vaisselle, ménage, lessive, poubelles, literie,
                       préparation des repas
                     </p>
                     <p>
-                      <strong className="text-[#2C2C2C]">Vie en résidence :</strong> Repas en salle communautaire,
-                      activités sociales
+                      <strong className="text-[#2C2C2C]">Vie en résidence :</strong> Tous les repas préparés par un
+                      chef cuisinier en salle communautaire, activités sociales
                     </p>
                   </div>
                 </CriteriaBlock>
@@ -278,7 +265,7 @@ export function Criteria() {
               Prêt à soumettre votre demande ?
             </h2>
             <p className="text-lg mb-10 max-w-2xl mx-auto opacity-95" style={fontBody}>
-              Complétez le formulaire en ligne. Une seule demande suffit pour le réseau ÉquiToît.
+              Téléchargez le formulaire papier, complétez-le et retournez-le par courriel à {ORGANIZATION.email}.
             </p>
             <Link to="/admission">
               <Button
@@ -286,7 +273,7 @@ export function Criteria() {
                 style={fontBody}
               >
                 <Send className="w-5 h-5" />
-                Formulaire d'inscription en ligne
+                Demande d'inscription
               </Button>
             </Link>
           </div>

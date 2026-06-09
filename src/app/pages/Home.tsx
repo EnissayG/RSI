@@ -45,7 +45,7 @@ const missionCards = [
   {
     color: '#E8621A',
     title: 'Un vrai chez-soi',
-    body: "15 appartements 3½ entièrement adaptés dans Hochelaga-Maisonneuve, salon, cuisinette, chambre fermée et salle de bain adaptée. Un logement qui vous ressemble, à tarif abordable.",
+    body: "15 appartements 3½ à Hochelaga-Maisonneuve, adaptés aux besoins de chaque personne selon sa condition. Un logement qui vous ressemble, à tarif abordable.",
   },
   {
     color: '#D4A017',
@@ -55,7 +55,7 @@ const missionCards = [
   {
     color: '#8AAC2A',
     title: 'Une vie de quartier',
-    body: "Repas à la salle communautaire, activités sociales et ancrage dans un quartier reconnu pour sa solidarité. RSI Propulsion, c'est un milieu de vie normalisant et chaleureux.",
+    body: "Tous les repas sont préparés par un chef cuisinier à la salle communautaire. Activités sociales et ancrage dans un quartier reconnu pour sa solidarité.",
   },
 ];
 
@@ -72,9 +72,9 @@ const heroStats: HeroStat[] = [
   {
     value: 'AVQ & AVD',
     shortValue: 'AVQ·AVD',
-    label: 'Aide quotidienne & domestique',
-    shortLabel: 'Aide quot. & dom.',
-    hint: 'Hygiène, habillement, repas, ménage',
+    label: 'Activités de la vie quotidienne et domestique',
+    shortLabel: 'Act. vie quot. & dom.',
+    hint: 'Hygiène, habillement, ménage, etc.',
   },
   {
     value: 'Depuis 2011',
@@ -96,14 +96,14 @@ const admissionSteps = [
   {
     step: '02',
     title: 'Préparer le dossier',
-    body: "Formulaire d'inscription et OCCI (Outil de Cheminement Clinique Informatisé), selon la procédure du réseau ÉquiToît.",
+    body: "Formulaire d'inscription (PDF) et OCCI (Outil de Cheminement Clinique Informatisé).",
     to: '/criteres',
     label: 'Documents PDF',
   },
   {
     step: '03',
     title: 'Soumettre la demande',
-    body: 'Complétez le formulaire en ligne ou contactez-nous, une seule demande couvre les quatre ressources du réseau.',
+    body: `Retournez le formulaire papier par courriel à ${ORGANIZATION.email} ou contactez notre équipe.`,
     to: '/admission',
     label: 'Inscription',
   },
@@ -280,9 +280,9 @@ export function Home() {
                 </p>
                 <ul className="space-y-3">
                   {[
-                    'Aide aux activités de la vie quotidienne (AVQ) : hygiène, habillement, transferts',
-                    'Aide aux activités de la vie domestique (AVD) : ménage, lessive, repas',
-                    'Repas à la salle communautaire avec chef cuisinier',
+                    ORGANIZATION.avq,
+                    ORGANIZATION.avd,
+                    ORGANIZATION.meals,
                     'Services professionnels en partenariat avec le CIUSSS de l\'Est-de-l\'Île-de-Montréal',
                   ].map((line) => (
                     <li key={line} className="flex gap-3 text-[#6B6B6B]" style={fontBody}>
@@ -369,39 +369,22 @@ export function Home() {
         <section className={`bg-white ${sectionPad}`}>
           <div className={pageContainer}>
             <div className={`grid grid-cols-1 lg:grid-cols-2 ${sectionGap} items-center`}>
-              <div>
-                <SectionEyebrow>Réseau ÉquiToît</SectionEyebrow>
+              <div className="rounded-2xl overflow-hidden shadow-xl h-[220px] sm:h-[280px] md:h-[320px]">
+                <img src={siteImages.missionVieQuartier} alt="Vie en communauté RSI" className="w-full h-full object-cover" />
+              </div>
+              <div className="bg-[#F9F8F6] rounded-2xl p-5 sm:p-8 md:p-10 border-l-4 border-[#8AAC2A]">
+                <SectionEyebrow>Vie en communauté</SectionEyebrow>
                 <h2 className={`${headingSection} mb-4 sm:mb-6`} style={fontHeading}>
-                  Une seule demande pour quatre ressources
+                  Journal des locataires
                 </h2>
                 <p className="text-[#6B6B6B] mb-6" style={fontBody}>
-                  RSI Propulsion fait partie du réseau ÉquiToît. En soumettant votre formulaire d'inscription, votre
-                  demande est valide pour l'ensemble des ressources partenaires :
+                  Nos locataires conçoivent et rédigent un petit journal qui partage la vie à RSI Propulsion, activités,
+                  témoignages et nouvelles du quotidien. C'est une vitrine authentique de notre communauté.
                 </p>
-                <ul className="space-y-2 mb-8">
-                  {ORGANIZATION.equitoitNetwork.map((name) => (
-                    <li key={name} className="flex items-center gap-2 text-[#2C2C2C] font-semibold" style={fontBody}>
-                      <span className="w-2 h-2 rounded-full bg-[#E8621A]" />
-                      {name}
-                    </li>
-                  ))}
-                </ul>
                 <Link to="/criteres" className="text-[#E8621A] font-semibold hover:underline" style={fontBody}>
                   Voir les critères complets →
                 </Link>
               </div>
-              <div className="rounded-2xl overflow-hidden shadow-xl h-[220px] sm:h-[280px] md:h-[320px]">
-                <img src={siteImages.equitoitReseau} alt="Vie en communauté RSI" className="w-full h-full object-cover" />
-              </div>
-            </div>
-            <div className="mt-8 sm:mt-12 md:mt-14 bg-[#F9F8F6] rounded-2xl p-5 sm:p-8 md:p-10 border-l-4 border-[#8AAC2A]">
-              <h3 className="text-xl font-bold text-[#2C2C2C] mb-3" style={fontHeading}>
-                Journal des locataires
-              </h3>
-              <p className="text-[#6B6B6B]" style={fontBody}>
-                Nos locataires conçoivent et rédigent un petit journal qui partage la vie à RSI Propulsion, activités,
-                témoignages et nouvelles du quotidien. C'est une vitrine authentique de notre communauté.
-              </p>
             </div>
           </div>
         </section>
@@ -416,8 +399,7 @@ export function Home() {
                 Comment déposer une demande ?
               </h2>
               <p className="text-[#6B6B6B]" style={fontBody}>
-                Une démarche simple, en quatre étapes. Votre demande est aussi valide pour les partenaires du réseau
-                ÉquiToît.
+                Une démarche simple, en quatre étapes. Téléchargez le formulaire papier et retournez-le par courriel.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -469,7 +451,7 @@ export function Home() {
                     {
                       color: '#E8621A',
                       title: 'AVQ',
-                      desc: "Aide à l'hygiène, à l'habillement et aux transferts",
+                      desc: 'Hygiène, habillement, transferts, etc.',
                     },
                     {
                       color: '#8AAC2A',
@@ -479,7 +461,7 @@ export function Home() {
                     {
                       color: '#D4A017',
                       title: 'Repas',
-                      desc: 'Chef cuisinier et salle communautaire avec service',
+                      desc: 'Tous les repas préparés par un chef cuisinier',
                     },
                     {
                       color: '#E8621A',
@@ -546,8 +528,7 @@ export function Home() {
               </div>
               <p className="text-[#6B6B6B] mb-8 max-w-3xl" style={fontBody}>
                 RSI Propulsion accueille des adultes présentant une déficience physique avec ou sans atteinte cognitive
-                légère. Consultez nos critères de sélection et complétez le formulaire, une seule demande suffit pour le
-                réseau ÉquiToît.
+                légère. Consultez nos critères de sélection et retournez le formulaire papier par courriel.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/criteres">
@@ -561,7 +542,7 @@ export function Home() {
                     className="border-2 border-[#E8621A] text-[#E8621A] rounded-full px-8 py-5"
                     style={fontBody}
                   >
-                    Formulaire d'inscription
+                    Demande d'inscription
                   </Button>
                 </Link>
               </div>

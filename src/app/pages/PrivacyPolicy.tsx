@@ -18,7 +18,7 @@ export function PrivacyPolicy() {
   const sections = [
     {
       title: 'Collecte des renseignements personnels',
-      content: `RSI Propulsion peut être amené à recueillir des informations personnelles vous concernant par le biais de ce site, notamment via le formulaire de contact et le formulaire de demande d'admission. Ces renseignements sont uniquement recueillis afin de communiquer avec vous et de traiter votre demande. Seuls certains employés de RSI Propulsion ont accès à ces informations. En aucun cas, RSI Propulsion ne communique, ne vend ou ne loue ces informations à une tierce partie.
+      content: `RSI Propulsion peut être amené à recueillir des informations personnelles vous concernant par le biais de ce site, notamment via le formulaire de contact ou par courriel lors d'une demande d'admission. Ces renseignements sont uniquement recueillis afin de communiquer avec vous et de traiter votre demande. Seuls certains employés de RSI Propulsion ont accès à ces informations. En aucun cas, RSI Propulsion ne communique, ne vend ou ne loue ces informations à une tierce partie.
 
 Lorsque vous visitez ce site, seule l'adresse IP de votre appareil est relevée ainsi que le type d'appareil et le pays, sans être reliée à aucune donnée personnelle.`,
     },
@@ -33,8 +33,8 @@ Sur la page Contact, la carte Google Maps n'est chargée que si vous cliquez sur
 Si des outils de mesure d'audience venaient à être ajoutés, ils ne seraient activés qu'avec votre consentement explicite.`,
     },
     {
-      title: "Formulaire de contact et d'admission",
-      content: `En remplissant nos formulaires, vous consentez à ce que RSI Propulsion conserve les renseignements inscrits dans le seul but de communiquer avec vous ou de traiter votre demande.`,
+      title: 'Formulaire de contact et demandes par courriel',
+      content: `En nous contactant via le formulaire du site ou par courriel (notamment pour une demande d'admission), vous consentez à ce que RSI Propulsion conserve les renseignements transmis dans le seul but de communiquer avec vous ou de traiter votre demande.`,
     },
     {
       title: "Droit d'opposition et de retrait",

@@ -19,12 +19,16 @@ import { pageHeroImages } from '../config/images';
 
 import kyrvensSimon from '../../imports/team/kyrvens-simon.png';
 import ghyslainParent from '../../imports/team/ghyslain-parent.png';
-import robinLaroche from '../../imports/team/robin-laroche.png';
 import manonGregoire from '../../imports/team/manon-gregoire.png';
 import rogerLaplante from '../../imports/team/roger-laplante.png';
 import deniseLariviere from '../../imports/team/denise-lariviere.png';
 import mathieuStMartin from '../../imports/team/mathieu-st-martin.png';
-import zacharyMonette from '../../imports/team/zachary-monette.png';
+
+const photoPlaceholder =
+  'data:image/svg+xml,' +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="#E8E4DF" width="100" height="100"/><circle cx="50" cy="38" r="18" fill="#C4BDB5"/><ellipse cx="50" cy="82" rx="28" ry="22" fill="#C4BDB5"/></svg>',
+  );
 
 const introText =
   "Regroupement de services intégrés Propulsion a une équipe de cœur administrant au mieux les ressources mises à sa disposition pour le bien-être de tous ses locataires.";
@@ -63,15 +67,14 @@ const executiveCommittee: BoardMember[] = [
     ],
   },
   {
-    name: 'Robin Laroche',
-    role: 'Vice-Président, Comité exécutif',
-    image: robinLaroche,
+    name: 'Roger Laplante',
+    role: 'Administrateur, Comité exécutif',
+    image: rogerLaplante,
     accent: '#D4A017',
     credentials: [
-      "Siège au conseil d'administration depuis 2001",
-      "Baccalauréat spécialisé en éducation (UQAM), DES en gestion (HEC)",
-      'Certification Lean Management Six Sigma',
-      'Plus de 25 ans en gestion dans le réseau de la santé et des services sociaux',
+      'Membre fondateur de RSI Propulsion',
+      "Président du C.A. de La Maison des Étapes (Forward House) depuis 1978",
+      "Membre du C.A. du Centre de Crise Tracom depuis 1980",
     ],
   },
   {
@@ -88,17 +91,6 @@ const executiveCommittee: BoardMember[] = [
 ];
 
 const administrators: BoardMember[] = [
-  {
-    name: 'Roger Laplante',
-    role: 'Administrateur',
-    image: rogerLaplante,
-    accent: '#E8621A',
-    credentials: [
-      'Membre fondateur de RSI Propulsion',
-      "Président du C.A. de La Maison des Étapes (Forward House) depuis 1978",
-      "Membre du C.A. du Centre de Crise Tracom depuis 1980",
-    ],
-  },
   {
     name: 'Denise Larivière',
     role: 'Administratrice, Représentante des locataires',
@@ -122,15 +114,11 @@ const administrators: BoardMember[] = [
     ],
   },
   {
-    name: 'Zachary Monette',
-    role: 'Administrateur, Représentant des locataires',
-    image: zacharyMonette,
+    name: 'Megan',
+    role: 'Administratrice',
+    image: photoPlaceholder,
     accent: '#E8621A',
-    tenantRep: true,
-    credentials: [
-      'Locataire chez RSI Propulsion depuis 2019',
-      "Passionné par l'entrepreneuriat",
-    ],
+    credentials: ["Membre du conseil d'administration"],
   },
 ];
 
