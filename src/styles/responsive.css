@@ -1,0 +1,12 @@
+/* Empêche tout débordement horizontal sur le site */
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Images de contenu : jamais plus larges que leur conteneur */
+img {
+  max-width: 100%;
+}

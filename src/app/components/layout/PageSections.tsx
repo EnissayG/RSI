@@ -161,7 +161,7 @@ export function PageHero({
             </motion.p>
           )}
           <motion.h1
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight ${
+            className={`text-[clamp(1.75rem,5vw,3.75rem)] font-bold mb-4 sm:mb-6 leading-tight ${
               textLight ? 'text-white' : 'text-[#2C2C2C]'
             }`}
             style={fontHeading}
@@ -312,7 +312,7 @@ export function ContentImage({
       <img
         src={src}
         alt={alt}
-        className="w-full h-full min-h-[180px] sm:min-h-[220px] object-cover object-center bg-[#E8E6E3]"
+        className="w-full max-w-full h-full min-h-[180px] sm:min-h-[220px] object-cover object-center bg-[#E8E6E3]"
         loading="lazy"
       />
     </div>

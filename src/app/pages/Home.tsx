@@ -55,7 +55,7 @@ const missionCards = [
   {
     color: '#8AAC2A',
     title: 'Une vie de quartier',
-    body: "Tous les repas sont préparés par un chef cuisinier à la salle communautaire. Activités sociales et ancrage dans un quartier reconnu pour sa solidarité.",
+    body: "Située au cœur d'Hochelaga, RSI Propulsion bénéficie d'un environnement vivant, accessible et inclusif pour les personnes à mobilité réduite. À proximité de la rue Ontario, aménagée en rue piétonne durant la période estivale, ainsi que de plusieurs pistes cyclables, le quartier offre un milieu de vie dynamique. De nombreux organismes communautaires et partenaires du secteur proposent également une variété d'activités favorisant la participation sociale, les loisirs et l'intégration à la vie de quartier.",
   },
 ];
 
@@ -77,8 +77,8 @@ const heroStats: HeroStat[] = [
     hint: 'Hygiène, habillement, ménage, etc.',
   },
   {
-    value: 'Depuis 2011',
-    shortValue: '2011',
+    value: 'Depuis 1995',
+    shortValue: '1995',
     label: 'À Montréal',
     shortLabel: 'Montréal',
     hint: 'Hochelaga-Maisonneuve',
@@ -152,7 +152,7 @@ export function Home() {
     <PageTransition>
       <div className="min-h-screen bg-white">
         {/* Hero, contenu à gauche, stats en barre en bas */}
-        <section className="relative min-h-[88dvh] sm:min-h-screen flex flex-col">
+        <section className="relative min-h-[72dvh] sm:min-h-[88dvh] md:min-h-screen flex flex-col overflow-hidden">
           <HeroCarousel index={heroSlide} onIndexChange={handleHeroSlideChange} />
 
           <div className="relative z-10 flex-1 flex items-center pt-24 sm:pt-28 pb-4 sm:pb-6">
@@ -168,7 +168,7 @@ export function Home() {
                   Hochelaga-Maisonneuve · Montréal
                 </motion.p>
                 <motion.h1
-                  className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 text-white leading-[1.1]"
+                  className="text-[clamp(1.75rem,6vw,4.5rem)] font-bold mb-4 sm:mb-6 text-white leading-[1.1] max-w-full"
                   style={fontHeading}
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -330,7 +330,7 @@ export function Home() {
                   <img
                     src={[siteImages.missionChezSoi, siteImages.missionServices, siteImages.missionVieQuartier][i]}
                     alt={card.title}
-                    className="w-full h-36 sm:h-44 object-cover shrink-0"
+                    className="w-full max-w-full h-36 sm:h-44 object-cover object-center shrink-0"
                   />
                   <div className="flex flex-col flex-1 p-5 sm:p-8 pt-6 sm:pt-7">
                     <div className="flex items-center gap-3 mb-4">

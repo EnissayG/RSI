@@ -67,8 +67,8 @@ function TwoColumnSection({
     </div>
   );
   const imgCol = (
-    <div className="rounded-2xl overflow-hidden shadow-xl h-[240px] sm:h-[300px] md:h-[380px]">
-      <img src={image} alt={imageAlt} className="w-full h-full object-cover" />
+    <div className="rounded-2xl overflow-hidden shadow-xl h-[240px] sm:h-[300px] md:h-[380px] w-full max-w-full">
+      <img src={image} alt={imageAlt} className="w-full max-w-full h-full object-cover object-center" />
     </div>
   );
 
@@ -159,6 +159,18 @@ export function Services() {
                 </p>
               </div>
               <ContentImage src={siteImages.repasCommunautaire} alt="Repas en salle communautaire" />
+            </div>
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center ${sectionHeaderMb}`}>
+              <ContentImage src={siteImages.salleCommunautaire} alt="Salle commune RSI Propulsion" />
+              <div>
+                <h3 className="text-xl font-bold text-[#2C2C2C] mb-3" style={fontHeading}>
+                  Un espace de vie partagé
+                </h3>
+                <p className="text-[#6B6B6B]" style={fontBody}>
+                  La grande salle commune accueille les repas, les activités et les moments de convivialité entre
+                  locataires. C'est un lieu accessible, lumineux et pensé pour favoriser les échanges au quotidien.
+                </p>
+              </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
               <HoverCard className="p-6 sm:p-8 md:p-10 border-l-4 border-[#E8621A]">

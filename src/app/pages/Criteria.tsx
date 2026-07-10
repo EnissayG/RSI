@@ -112,12 +112,27 @@ export function Criteria() {
                   },
                   {
                     title: DOCUMENTS.inscription.title,
-                    description: DOCUMENTS.inscription.description,
+                    description:
+                      "Formulaire papier à imprimer, remplir et retourner par courriel. Section OBNL : indiquez votre ordre de préférence (1, 2, 3…) si vous choisissez plus d'un organisme.",
                     href: DOCUMENTS.inscription.file,
                     accent: '#D4A017',
                   },
                 ]}
               />
+            </div>
+          </div>
+        </section>
+
+        <section className={`bg-white ${sectionPad}`}>
+          <div className={`${pageContainer} max-w-3xl`}>
+            <div className="bg-[#F9F8F6] rounded-2xl p-6 sm:p-8 border border-gray-100">
+              <SectionEyebrow>Formulaire d'inscription</SectionEyebrow>
+              <h2 className="text-xl font-bold text-[#2C2C2C] mb-3" style={fontHeading}>
+                OBNL d'habitation souhaitée
+              </h2>
+              <p className="text-[#6B6B6B]" style={fontBody}>
+                Si vous indiquez plus d'un OBNL, veuillez indiquer votre ordre de préférence (1, 2, 3…)
+              </p>
             </div>
           </div>
         </section>

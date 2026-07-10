@@ -21,7 +21,7 @@ export const ORGANIZATION = {
     '15 logements adaptés aux besoins de chaque personne selon sa condition (équipements, aménagements, barres d\'appui, etc.)',
   adminHours: 'Lundi au vendredi, 9 h 30 à 17 h 30',
   languages: 'Français et anglais',
-  territory: 'Grand Montréal (demandes acceptées de partout au Québec)',
+  territory: 'Nous acceptons les demandes de partout au Québec',
   clientele:
     'Adultes de 18 à 59 ans en propulsion à mobilité réduite, présentant une déficience physique avec ou sans atteinte cognitive légère, capables de vivre en appartement avec un soutien adapté.',
   avq:

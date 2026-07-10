@@ -33,7 +33,8 @@ export function FAQ() {
         },
         {
           question: "Comment faire une demande d'admission ?",
-          answer: `Consultez les critères sur notre site, téléchargez le formulaire d'inscription (PDF), complétez-le et retournez-le par courriel à ${ORGANIZATION.email}. Une entrevue de sélection sera organisée. Téléphone : ${ORGANIZATION.phone}.`,
+          answer:
+            "Consultez les critères sur notre site, téléchargez le formulaire d'inscription (PDF), complétez-le et retournez-le par courriel à dg@rsipropulsion.ca accompagné d'un OCCI et d'un plan de service. Tous les documents mentionnés doivent être joints afin que votre candidature soit considérée.",
         },
         {
           question: 'Qui peut habiter à RSI Propulsion ?',
@@ -67,7 +68,7 @@ export function FAQ() {
         {
           question: "Qu'est-ce qui est inclus dans le loyer ?",
           answer:
-            "Le loyer inclut le logement adapté (3½), l'électricité, le chauffage, l'eau chaude, et l'accès aux espaces communs. Les services d'aide à la vie quotidienne (AVQ) et domestique (AVD) sont facturés séparément selon vos besoins.",
+            "Le loyer inclut le logement adapté (3½), l'électricité, le chauffage, l'eau chaude, et l'accès aux espaces communs.",
         },
         {
           question: 'Comment sont les appartements ?',
@@ -105,11 +106,6 @@ export function FAQ() {
           answer:
             "Bien sûr ! C'est votre domicile et vous êtes libre de recevoir famille et amis. Nous disposons également d'espaces communs où vous pouvez accueillir vos visiteurs confortablement.",
         },
-        {
-          question: "Puis-je garder mes propres professionnels de la santé ?",
-          answer:
-            "Oui, vous conservez le choix de vos professionnels de la santé (médecin, physiothérapeute, etc.). Notre équipe collabore avec eux pour assurer une continuité des soins adaptée à vos besoins.",
-        },
       ],
     },
     {
@@ -126,7 +122,7 @@ export function FAQ() {
         },
         {
           question: 'Dois-je habiter à Montréal pour postuler ?',
-          answer: ORGANIZATION.territory,
+          answer: 'Non, nous acceptons les demandes de partout au Québec.',
         },
         {
           question: 'Où êtes-vous situés ?',

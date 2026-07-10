@@ -88,6 +88,15 @@ export function Admission() {
 
               <div className="space-y-4 border-t border-gray-100 pt-8">
                 <h3 className="text-lg font-bold text-[#2C2C2C]" style={fontHeading}>
+                  OBNL d'habitation souhaitée
+                </h3>
+                <p className="text-[#6B6B6B]" style={fontBody}>
+                  Si vous indiquez plus d'un OBNL, veuillez indiquer votre ordre de préférence (1, 2, 3…)
+                </p>
+              </div>
+
+              <div className="space-y-4 border-t border-gray-100 pt-8">
+                <h3 className="text-lg font-bold text-[#2C2C2C]" style={fontHeading}>
                   Documents requis
                 </h3>
                 <ul className="space-y-2">

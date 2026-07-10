@@ -18,12 +18,13 @@ export function HeroCarousel({ index, onIndexChange }: HeroCarouselProps) {
     <div className="absolute inset-0 overflow-hidden bg-[#2C2C2C]" aria-hidden>
       {heroSlides.map((slide, i) => (
         <img
-          key={slide.src}
+          key={`${slide.src}-${i}`}
           src={slide.src}
           alt=""
-          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
             i === index ? 'opacity-100' : 'opacity-0'
           }`}
+          style={{ objectPosition: slide.objectPosition ?? 'center center' }}
           loading={i === 0 ? 'eager' : 'lazy'}
           fetchPriority={i === 0 ? 'high' : 'low'}
           decoding="async"

@@ -17,29 +17,25 @@ import {
 } from '../components/layout/PageSections';
 import { pageHeroImages } from '../config/images';
 
-import kyrvensSimon from '../../imports/team/kyrvens-simon.png';
+import equipeKyrvens from '../../imports/rsi/equipe-kyrvens.png';
+import equipeMathieu from '../../imports/rsi/equipe-mathieu.png';
+import equipeMegane from '../../imports/rsi/equipe-megane.png';
 import ghyslainParent from '../../imports/team/ghyslain-parent.png';
 import manonGregoire from '../../imports/team/manon-gregoire.png';
 import rogerLaplante from '../../imports/team/roger-laplante.png';
 import deniseLariviere from '../../imports/team/denise-lariviere.png';
-import mathieuStMartin from '../../imports/team/mathieu-st-martin.png';
-
-const photoPlaceholder =
-  'data:image/svg+xml,' +
-  encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="#E8E4DF" width="100" height="100"/><circle cx="50" cy="38" r="18" fill="#C4BDB5"/><ellipse cx="50" cy="82" rx="28" ry="22" fill="#C4BDB5"/></svg>',
-  );
 
 const introText =
   "Regroupement de services intégrés Propulsion a une équipe de cœur administrant au mieux les ressources mises à sa disposition pour le bien-être de tous ses locataires.";
 
-const dgQuote = 'Chez RSI Propulsion, on trouve un « Chez-moi » !';
+const dgQuote = 'Chez RSI Propulsion, on trouve un véritable "chez-soi".';
 
 const dgParagraphs = [
-  "RSI Propulsion, c'est 15 appartements adaptés accueillant des personnes en situation de déficience motrice et/ou de déficience cognitive légère. C'est un « Chez-moi » bien à eux, à tarif des plus abordables.",
-  "RSI Propulsion c'est aussi une gamme de services aux activités de la vie quotidienne et domestique. Grâce à son équipe de préposés aux bénéficiaires expérimentés et dévoués, RSI Propulsion est en mesure d'offrir des services de qualité à tous ses locataires et ce, 24 heures par jour et 7 jours par semaine.",
-  "Chaque locataire bénéficie d'un plan de services individualisé réalisé par un ergothérapeute. Les services professionnels à domicile sont assurés par le CIUSSS de l'Est de Montréal, avec qui RSI Propulsion a tissé une belle complicité.",
-  "C'est dans un milieu sécuritaire laissant place à l'individualité de chacun que, depuis plus de 25 ans, RSI Propulsion accueille ses locataires. Vivre chez RSI Propulsion, c'est vivre son quotidien dans un environnement des plus normalisant.",
+  "RSI Propulsion, c'est 15 appartements adaptés accueillant des personnes vivant avec une déficience motrice et/ou une déficience cognitive légère. Nous leur offrons un milieu de vie abordable, sécuritaire et chaleureux où chacun peut évoluer à son rythme tout en conservant son autonomie.",
+  "Notre organisme offre également une gamme complète de services d'aide aux activités de la vie quotidienne et domestique. Grâce à une équipe de préposés aux bénéficiaires expérimentés et dévoués, nous sommes en mesure d'assurer des services de qualité, 24 heures sur 24, 7 jours sur 7.",
+  "Chaque locataire bénéficie d'un plan de services individualisé élaboré par un ergothérapeute. Les services professionnels à domicile sont assurés par le CIUSSS de l'Est-de-l'Île-de-Montréal, avec qui nous entretenons un partenariat solide depuis de nombreuses années.",
+  "Depuis plus de 25 ans, RSI Propulsion accueille ses locataires dans un environnement sécuritaire, inclusif et respectueux de l'individualité de chacun. Vivre chez RSI Propulsion, c'est profiter d'un milieu de vie normalisant où l'autonomie, la dignité et la participation à la communauté sont au cœur de nos actions.",
+  "Titulaire d'un baccalauréat en communication humaine et organisationnelle, je poursuis actuellement un MBA à l'ESG UQAM. Cette formation me permet de mettre à profit des pratiques de gestion modernes afin de soutenir le développement de l'organisme et de toujours mieux répondre aux besoins de nos locataires et de leurs proches.",
 ];
 
 type BoardMember = {
@@ -105,7 +101,7 @@ const administrators: BoardMember[] = [
   {
     name: 'Mathieu St-Martin',
     role: 'Administrateur, Représentant des locataires',
-    image: mathieuStMartin,
+    image: equipeMathieu,
     accent: '#8AAC2A',
     tenantRep: true,
     credentials: [
@@ -114,11 +110,15 @@ const administrators: BoardMember[] = [
     ],
   },
   {
-    name: 'Megan',
+    name: 'Mégane Ravary',
     role: 'Administratrice',
-    image: photoPlaceholder,
+    image: equipeMegane,
     accent: '#E8621A',
-    credentials: ["Membre du conseil d'administration"],
+    credentials: [
+      "Membre du conseil d'administration depuis juillet 2025",
+      'Athlète professionnelle de boccia',
+      'Étudiante à temps plein',
+    ],
   },
 ];
 
@@ -156,7 +156,7 @@ export function Team() {
                     style={{ boxShadow: '0 0 0 4px #E8621A' }}
                   >
                     <img
-                      src={kyrvensSimon}
+                      src={equipeKyrvens}
                       alt="Kyrvens Simon"
                       className="w-full h-full object-cover object-top"
                     />

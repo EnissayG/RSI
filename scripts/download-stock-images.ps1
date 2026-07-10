@@ -38,16 +38,14 @@ function Copy-Local($filename, $source) {
   return $false
 }
 
-# --- Carrousel : photos RSI réelles + stock cohérent ---
+# --- Carrousel : 3 diapositives (4e supprimée) ---
 Copy-Local "hero-1.jpg" "logement-RSI-exterieur.jpg"
-Copy-Local "hero-2.jpg" "rsi-propulsion-handicap.jpg"
-Save-Pexels "hero-3.jpg" 5257009 1600    # vie communautaire — personnes ensemble
-Save-Pexels "hero-4.jpg" 3184418 1600    # échange / accompagnement en groupe
+# hero-2.jpg et hero-3.jpg : photos RSI réelles (déposées manuellement dans public/images/stock/)
 
 # --- Mission accueil ---
-Save-Pexels "mission-1.jpg" 276724 1200   # salon / appartement
+Save-Pexels "mission-1.jpg" 276724 1200   # salon / appartement (remplacé par photo RSI si présente)
 Save-Pexels "mission-2.jpg" 7551650 1200  # accompagnement soins
-Save-Pexels "mission-3.jpg" 3184418 1200  # groupe / communauté
+Save-Pexels "mission-3.jpg" 3184418 1200  # vie de quartier (remplacé par photo RSI si présente)
 
 Save-Unsplash "equitoit.jpg" "photo-1560518883-ce09059eeffa" 1200
 Save-Pexels "accompagnement.jpg" 4386466 1200  # soignant / patient

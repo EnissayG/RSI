@@ -1,10 +1,13 @@
 /**
- * Images locales, public/images/stock/
- * Chaque fichier correspond à un contexte précis (voir scripts/download-stock-images.ps1).
- * Photos RSI réelles : Historique (contenu) + portraits C.A. dans Team.tsx.
+ * Images : photos officielles RSI (src/imports/rsi/) + stock (public/images/stock/).
  */
 import logementExterieur from '../../imports/logement-RSI-exterieur.jpg';
 import historiqueBas from '../../imports/historique-bas.jpg';
+
+import photo1LogementAbordable from '../../imports/rsi/photo1-logement-abordable.png';
+import photo2VraiChezSoi from '../../imports/rsi/photo2-vrai-chez-soi.png';
+import photo3VieDeQuartier from '../../imports/rsi/photo3-vie-de-quartier.png';
+import photo4SalleCommune from '../../imports/rsi/photo4-salle-commune.png';
 
 const base = import.meta.env.BASE_URL;
 
@@ -13,23 +16,16 @@ export function stockImage(filename: string): string {
 }
 
 const stock = {
-  // Carrousel : logement RSI → accompagnement → communauté → écoute / entraide
   hero1: stockImage('hero-1.jpg'),
-  hero2: stockImage('hero-2.jpg'),
-  hero3: stockImage('hero-3.jpg'),
-  hero4: stockImage('hero-4.jpg'),
-  // Accueil, cartes mission
-  mission1: stockImage('mission-1.jpg'), // Un vrai chez-soi
-  mission2: stockImage('mission-2.jpg'), // Services AVQ / AVD
-  mission3: stockImage('mission-3.jpg'), // Vie de quartier
-  equitoit: stockImage('equitoit.jpg'), // Réseau ÉquiToît / demande logement
-  accompagnement: stockImage('accompagnement.jpg'), // Soutien 24h/24
-  // Services, sections
+  /** Ancienne image du slide 2 carrousel (avant photos officielles) */
+  heroSlide3Legacy: stockImage('hero-slide3-legacy.jpg'),
+  mission2: stockImage('mission-2.jpg'),
+  equitoit: stockImage('equitoit.jpg'),
+  accompagnement: stockImage('accompagnement.jpg'),
   soins: stockImage('soins.jpg'),
   domestique: stockImage('domestique.jpg'),
   repas: stockImage('repas.jpg'),
   servicesIntegres: stockImage('services-integres.jpg'),
-  // Héros de page
   heroServices: stockImage('hero-services.jpg'),
   heroCriteres: stockImage('hero-criteres.jpg'),
   heroAdmission: stockImage('hero-admission.jpg'),
@@ -45,19 +41,26 @@ const stock = {
   heroConfidentialite: stockImage('hero-confidentialite.jpg'),
 } as const;
 
+/** Photos officielles client (nom de fichier = source de vérité) */
+export const officialPhotos = {
+  photo1LogementAbordable,
+  photo2VraiChezSoi,
+  photo3VieDeQuartier,
+  photo4SalleCommune,
+} as const;
+
 export const siteImages = {
   ...stock,
-  missionChezSoi: stock.mission1,
+  missionChezSoi: photo2VraiChezSoi,
   missionServices: stock.mission2,
-  missionVieQuartier: stock.mission3,
+  missionVieQuartier: photo3VieDeQuartier,
   equitoitReseau: stock.equitoit,
   accompagnement24h: stock.accompagnement,
   soinsQuotidien: stock.soins,
   vieDomestique: stock.domestique,
   repasCommunautaire: stock.repas,
-  /** Critères : logement adapté / admission */
+  salleCommunautaire: photo4SalleCommune,
   criteresAdmission: stock.criteresSection,
-  /** Inscription : formulaire / dossier */
   inscriptionAccueil: stock.heroAdmission,
   faqAccompagnement: stock.heroFaq,
   carriereMilieu: stock.heroCarriere,
@@ -65,16 +68,22 @@ export const siteImages = {
   contactAccueil: stock.contactSection,
   contactLocation: stock.contactLocation,
   confidentialite: stock.heroConfidentialite,
-  /** Photos réelles RSI, page Historique (corps de page) */
   logementExterieur,
   historiqueBas,
 } as const;
 
 export const heroSlides = [
-  { src: stock.hero1, alt: 'Logements adaptés et abordables' },
-  { src: stock.hero2, alt: 'Accompagnement quotidien bienveillant' },
-  { src: stock.hero3, alt: 'Repas et vie en communauté' },
-  { src: stock.hero4, alt: 'Ancrage dans le quartier' },
+  { src: stock.hero1, alt: 'Logements adaptés et abordables', objectPosition: 'center center' },
+  {
+    src: photo1LogementAbordable,
+    alt: 'Les logements abordables',
+    objectPosition: 'center 40%',
+  },
+  {
+    src: stock.heroSlide3Legacy,
+    alt: 'Accompagnement quotidien bienveillant',
+    objectPosition: 'center 35%',
+  },
 ] as const;
 
 export const pageHeroImages = {
